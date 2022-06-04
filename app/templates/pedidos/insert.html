@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <form method="POST" class="post-form" action="">
+  <form method="POST" class="post-form" action="" novalidate>
     {% csrf_token %}
     <div class="container">
       <br>
@@ -21,7 +21,6 @@
           <h3>Inserir Pedido</h3>
         </div>
       </div>
-
 
       <h5 class="text-info">Pizza Tamanhos e Preços</h5>
       {{ form2.management_form }}
@@ -76,7 +75,23 @@
           $("#id_form2-0-tamanho").html(data);
         }
       });
+    });
 
+    $('#id_form2-0-tamanho').change(function () {
+      var url = 'hr/preco'
+      var tamanhoID = $(this).val();
+      var produtoID = $('#id_form2-0-nome').val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'produto': produtoID,
+          'tamanho': tamanhoID
+        },
+        success: function (data) {
+          $("#id_form2-0-preco").val(data);
+        }
+      });
     });
   </script>
 

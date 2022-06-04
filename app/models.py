@@ -30,7 +30,7 @@ class Pedido(models.Model):
     status = models.CharField(default="Inicio",max_length=100)
     tempo = models.DateTimeField(auto_now_add=True)
     metodoPag = models.CharField(null=True,max_length=50)
-    obs = models.CharField(max_length=500)
+    obs = models.CharField(max_length=500, null=True)
     class Meta:
         db_table = "pedido"
 

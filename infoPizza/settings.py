@@ -77,14 +77,16 @@ WSGI_APPLICATION = 'infoPizza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'bh3nnjw9ybjzjtstqscj',  
-        'USER':'uwirwdwnmvbbjuor',  
-        'PASSWORD':'9t5ICNwuiNjk5cYxt3Yn',  
-        'HOST':'bh3nnjw9ybjzjtstqscj-mysql.services.clever-cloud.com',  
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'infoPizza',
+        'USER':'root',
+        'PASSWORD':'123456',
+        'HOST':'localhost',
         'PORT':'3306'
     }
 }
+
+
 
 
 # Password validation
@@ -109,14 +111,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+THOUSAND_SEPARATOR='.'
+
+USE_THOUSAND_SEPARATOR=True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

@@ -101,10 +101,13 @@ def pedidosIndex(request) :
 def pedidosInsert(request) :
     novoPedido = Pedido()
     if request.method == "POST":
-        form = PedidoForm(request.POST,request.FILES,instance=novoPedido,prefix='form')
-        form2 = PedidoFormset(request.POST,request.FILES,instance=novoPedido,prefix='form2')
-        form3 = PedidoFormset(request.POST,request.FILES,instance=novoPedido,prefix='form3')
-        if form.is_valid() and form2.is_valid() and form3.is_valid():  
+        form = PedidoForm(request.POST, request.FILES, instance=novoPedido, prefix='form')
+        form2 = PedidoFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
+        # form3 = PedidoFormset(request.POST,request.FILES,instance=novoPedido,prefix='form3')
+
+        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
+        logging.debug(form2.errors)   
+        if form.is_valid() and form2.is_valid():  
             try:  
                 form.save()
                 form2.save()
@@ -114,8 +117,8 @@ def pedidosInsert(request) :
     else:  
         form = PedidoForm(instance=novoPedido,prefix='form')
         form2 = PedidoFormset(instance=novoPedido,prefix='form2')
-        form3 = PedidoFormset(instance=novoPedido,prefix='form3')
-    return render(request,'pedidos/insert.html',{'form':form,'form2':form2,'form3':form3})  
+        # form3 = PedidoFormset(instance=novoPedido,prefix='form3')
+    return render(request,'pedidos/insert.html',{'form':form,'form2':form2})  
 
 
 def load_tamanhos(request):
@@ -123,3 +126,10 @@ def load_tamanhos(request):
     produto_id = Produto.objects.get(nome=produto_id).id
     tamanhos = Pizza.objects.filter(produto=produto_id)
     return render(request, 'pedidos/hr/tamanho_dropdown_list_options.html', {'tamanhos': tamanhos})
+
+def load_preco(request):
+    produto_id = request.GET.get('produto')
+    produto_id = Produto.objects.get(nome=produto_id).id
+    tamanho = request.GET.get('tamanho')
+    preco = Pizza.objects.filter(produto=produto_id).get(tamanho=tamanho).preco
+    return render(request, 'pedidos/hr/preco.html', {'preco': preco} )
