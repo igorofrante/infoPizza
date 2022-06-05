@@ -25,8 +25,7 @@
             {% for formx in form2 %}
             {% if bebida %} {{ formx.id|default:bebida.id}} {% endif %}
             <div class="form-group mt-2 text-center">
-                {{ formx.tamanho.label }} {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }}
-                {{ formx.quant.label }} {{ formx.quant }}
+                {{ formx.tamanho.label }} {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }} {{ formx.DELETE.label}} {{ formx.DELETE }} 
             </div>
             {% endfor %}
 

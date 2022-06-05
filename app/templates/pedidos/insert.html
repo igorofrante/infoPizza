@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <form method="POST" class="post-form" action="" novalidate>
+  <form method="POST" class="post-form" action="">
     {% csrf_token %}
     <div class="container">
       <br>
@@ -25,7 +25,7 @@
       <h5 class="text-info">Pizza Tamanhos e Preços</h5>
       {{ form2.management_form }}
       {% for formx in form2 %}
-      {{ formx.nome.label }} {{ formx.nome }}
+      {{ formx.produto.label }} {{ formx.produto }}
       {{ formx.tamanho.label }} {{ formx.tamanho }}
       {{ formx.preco.label }} {{ formx.preco }}
       {{ formx.DELETE.label }} {{ formx.DELETE }}
@@ -62,7 +62,9 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
-    $('#id_form2-0-nome').change(function () {
+    for (let index = 0; index < $("#id_form2-TOTAL_FORMS").val(); index++) {
+      
+      $('#id_form2-'+index+'-produto').change(function () {
       var url = 'hr/tamanho_dropdown_list_options'
       var produtoID = $(this).val();
 
@@ -72,28 +74,29 @@
           'produto': produtoID
         },
         success: function (data) {
-          $("#id_form2-0-tamanho").html(data);
+          $('#id_form2-'+index+'-tamanho').html(data);
         }
       });
     });
 
-    $('#id_form2-0-tamanho').change(function () {
+    $('#id_form2-'+index+'-tamanho').change(function () {
       var url = 'hr/preco'
       var tamanhoID = $(this).val();
-      var produtoID = $('#id_form2-0-nome').val();
 
       $.ajax({
         url: url,
         data: {
-          'produto': produtoID,
           'tamanho': tamanhoID
         },
         success: function (data) {
-          $("#id_form2-0-preco").val(data);
+          $('#id_form2-'+index+'-preco').val(data);
         }
       });
     });
+  }
   </script>
+      
+   
 
 </body>
 
