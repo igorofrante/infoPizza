@@ -103,7 +103,6 @@ def pedidosInsert(request) :
     if request.method == "POST":
         form = PedidoForm(request.POST, request.FILES, instance=novoPedido, prefix='form')
         form2 = PedidoFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
-        # form3 = PedidoFormset(request.POST,request.FILES,instance=novoPedido,prefix='form3')
 
         logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
         logging.debug(form2.errors)   
@@ -123,13 +122,10 @@ def pedidosInsert(request) :
 
 def load_tamanhos(request):
     produto_id = request.GET.get('produto')
-    produto_id = Produto.objects.get(nome=produto_id).id
-    tamanhos = Pizza.objects.filter(produto=produto_id)
+    tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
     return render(request, 'pedidos/hr/tamanho_dropdown_list_options.html', {'tamanhos': tamanhos})
 
 def load_preco(request):
-    produto_id = request.GET.get('produto')
-    produto_id = Produto.objects.get(nome=produto_id).id
     tamanho = request.GET.get('tamanho')
-    preco = Pizza.objects.filter(produto=produto_id).get(tamanho=tamanho).preco
+    preco = ProdutoInfo.objects.get(id=tamanho).preco
     return render(request, 'pedidos/hr/preco.html', {'preco': preco} )

@@ -1,11 +1,1 @@
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. B não é uma das escolhas disponíveis.']}, {}, {}, {}]
-INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. B não é uma das escolhas disponíveis.']}, {}, {}, {}]
-INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. M não é uma das escolhas disponíveis.']}, {}, {}, {}]
-INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. B não é uma das escolhas disponíveis.']}, {}, {}, {}]
-INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. B não é uma das escolhas disponíveis.']}, {}, {}, {}]
-INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
-DEBUG:root:[{'nome': ['Faça uma escolha válida. Sua escolha não é uma das disponíveis.'], 'tamanho': ['Faça uma escolha válida. B não é uma das escolhas disponíveis.']}, {}, {}, {}]
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza2\app\forms.py changed, reloading.

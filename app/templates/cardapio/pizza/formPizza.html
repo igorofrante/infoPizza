@@ -25,7 +25,7 @@
             {% for formx in form2 %}
             {% if pizza %} {{ formx.id|default:pizza.id}} {% endif %}
             <div class="form-group mt-2 text-center">
-                {{ formx.tamanho.label }} {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }}
+                {{ formx.tamanho.label }} {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }} {{ formx.DELETE.label}} {{ formx.DELETE }} 
             </div>
             {% endfor %}
 
