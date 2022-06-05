@@ -1,1 +1,7 @@
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza2\app\forms.py changed, reloading.
+DEBUG:root:[{}, {}, {}, {}]
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza2\app\views.py changed, reloading.
+DEBUG:root:[{}, {}, {}, {}]
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza2\app\views.py changed, reloading.
