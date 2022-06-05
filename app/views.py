@@ -1,3 +1,4 @@
+from datetime import datetime,time,timedelta
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from app.forms import * 
@@ -10,7 +11,18 @@ import logging
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    if datetime.now().time()> time(23,59):
+        startdate =  datetime.now()
+        startdate = startdate.replace(hour=18,minute=0,second=0)
+        enddate = startdate + timedelta(days=1)
+        enddate = enddate.replace(hour=5,minute=0,second=0)
+    else:
+        startday =  datetime.now() - timedelta(days=1)
+        startday = startday.replace(hour=18,minute=0,second=0)
+        enddate = datetime.now()
+        endday= enddate.replace(hour=5,minute=0,second=0) 
+    pedidoshoje = Pedido.objects.filter(tempo__range=[startday,endday]).count() #filter =today
+    return render(request,'index.html',{'pedidoshoje':pedidoshoje})
 
 def cardapioIndex (request):
     return render(request, 'cardapio/index.html')
