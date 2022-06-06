@@ -11,18 +11,7 @@ import logging
 # Create your views here.
 
 def index(request):
-    if datetime.now().time()> time(23,59):
-        startdate =  datetime.now()
-        startdate = startdate.replace(hour=18,minute=0,second=0)
-        enddate = startdate + timedelta(days=1)
-        enddate = enddate.replace(hour=5,minute=0,second=0)
-    else:
-        startday =  datetime.now() - timedelta(days=1)
-        startday = startday.replace(hour=18,minute=0,second=0)
-        enddate = datetime.now()
-        endday= enddate.replace(hour=5,minute=0,second=0) 
-    pedidoshoje = Pedido.objects.filter(tempo__range=[startday,endday]).count() #filter =today
-    return render(request,'index.html',{'pedidoshoje':pedidoshoje})
+    return render(request,'index.html')
 
 def cardapioIndex (request):
     return render(request, 'cardapio/index.html')
@@ -110,34 +99,47 @@ def pedidosIndex(request) :
     pedidos = Pedido.objects.all()
     return render(request,"pedidos/index.html",{'pedidos':pedidos}) 
 
+def indexContPedidos(request):
+    if datetime.now().time()> time(23,59):
+        startdate =  datetime.now()
+        startdate = startdate.replace(hour=18,minute=0,second=0)
+        enddate = startdate + timedelta(days=1)
+        enddate = enddate.replace(hour=5,minute=0,second=0)
+    else:
+        startday =  datetime.now() - timedelta(days=1)
+        startday = startday.replace(hour=18,minute=0,second=0)
+        enddate = datetime.now()
+        endday= enddate.replace(hour=5,minute=0,second=0) 
+    pedidoshoje = Pedido.objects.filter(tempo__range=[startday,endday]).count() #filter =today
+    return render(request,'index.html', {'pedidoshoje':pedidoshoje})
+
 def pedidosInsert(request) :
     novoPedido = Pedido()
     if request.method == "POST":
         form = PedidoForm(request.POST, request.FILES, instance=novoPedido, prefix='form')
-        form2 = PedidoFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
+        form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
 
-        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-        logging.debug(form2.errors)   
-        if form.is_valid() and form2.is_valid():  
+        if form.is_valid() and form2.is_valid() and form3.is_valid():  
             try:  
                 form.save()
                 form2.save()
+                form3.save()
                 return redirect('/pedidos')  
             except:  
                 pass  
     else:  
         form = PedidoForm(instance=novoPedido,prefix='form')
-        form2 = PedidoFormset(instance=novoPedido,prefix='form2')
-        # form3 = PedidoFormset(instance=novoPedido,prefix='form3')
-    return render(request,'pedidos/insert.html',{'form':form,'form2':form2})  
-
+        form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
+        form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
+    return render(request,'pedidos/insert.html',{'form':form, 'form2':form2, 'form3':form3})  
 
 def load_tamanhos(request):
     produto_id = request.GET.get('produto')
     tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
-    return render(request, 'pedidos/hr/tamanho_dropdown_list_options.html', {'tamanhos': tamanhos})
+    return render(request, 'pedidos/ajax/tamanhos.html', {'tamanhos': tamanhos})
 
 def load_preco(request):
     tamanho = request.GET.get('tamanho')
     preco = ProdutoInfo.objects.get(id=tamanho).preco
-    return render(request, 'pedidos/hr/preco.html', {'preco': preco} )
+    return render(request, 'pedidos/ajax/preco.html', {'preco': preco} )

@@ -5,3 +5,146 @@ INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza
 DEBUG:root:[{}, {}, {}, {}]
 WARNING:django.request:Not Found: /favicon.ico
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\InfoPizza2\app\views.py changed, reloading.
+DEBUG:root:[{'preco': ['Este campo é obrigatório.']}, {}, {}, {}]
+ERROR:django.request:Internal Server Error: /pedidos/hr/preco
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1988, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 145, in load_preco
+    preco = ProdutoInfo.objects.get(id=tamanho).preco
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+ERROR:django.request:Internal Server Error: /pedidos/hr/tamanho_dropdown_list_options
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1988, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 140, in load_tamanhos
+    tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\related_lookups.py", line 154, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+ERROR:django.request:Internal Server Error: /pedidos/hr/preco
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1988, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 145, in load_preco
+    preco = ProdutoInfo.objects.get(id=tamanho).preco
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\sql\query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:[{}, {}, {}, {}]
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:[{}, {}, {}, {}]
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['OKP3kt3FOo4L2vOQD07fv68vfunJNoaU8tKwgX0hJCVXklWBcqvdcA0LbHnxJ67q'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': [''], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['OKP3kt3FOo4L2vOQD07fv68vfunJNoaU8tKwgX0hJCVXklWBcqvdcA0LbHnxJ67q'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': [''], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['OKP3kt3FOo4L2vOQD07fv68vfunJNoaU8tKwgX0hJCVXklWBcqvdcA0LbHnxJ67q'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': [''], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['OKP3kt3FOo4L2vOQD07fv68vfunJNoaU8tKwgX0hJCVXklWBcqvdcA0LbHnxJ67q'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': [''], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.

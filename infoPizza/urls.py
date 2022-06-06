@@ -29,9 +29,10 @@ urlpatterns = [
     path('cardapioBebidaInsert/', views.cardapioBebidaInsert, name='cardapioBebidaInsert'),
     path('cardapioBebidaUpdate/<int:id>', views.cardapioBebidaUpdate, name='cardapioBebidaUpdate'),
     path('cardapio/bebida/delete/<int:id>', views.cardapioBebidaDestroy),
+    path('', views.indexContPedidos),
     path('pedidos/',views.pedidosIndex),
     path('pedidos/insert',views.pedidosInsert),
-    path('pedidos/hr/tamanho_dropdown_list_options', views.load_tamanhos, name='ajax_load_tamanhos'),
-    path('pedidos/hr/preco', views.load_preco),
+    path('pedidos/ajax/tamanhos', views.load_tamanhos, name='ajax_load_tamanhos'),
+    path('pedidos/ajax/preco', views.load_preco),
     
 ]
