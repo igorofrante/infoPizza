@@ -11,7 +11,8 @@ import logging
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    pedidoshoje = Pedido.objects.all().count() #filter =today
+    return render(request, 'index.html', {'pedidoshoje':pedidoshoje})
 
 def cardapioIndex (request):
     return render(request, 'cardapio/index.html')
@@ -20,6 +21,11 @@ def cardapioIndex (request):
 def cardapioPizzaIndex(request):
     pizzas = Produto.objects.filter(cat__iexact=1) 
     return render(request,'cardapio/pizza/index.html',{'pizzas':pizzas}) 
+
+def cardapioPizzaView(request, id):
+    pizza = Produto.objects.get(id=id)
+    pizzaInfo = ProdutoInfo.objects.filter(produto_id=id)
+    return render(request, 'cardapio/pizza/viewPizza.html', {'pizza':pizza, 'pizzaInfo':pizzaInfo})
 
 def cardapioPizzaInsert(request) :
     novaPizza = Produto(cat=1)
@@ -61,6 +67,11 @@ def cardapioBebidaIndex(request) :
     bebidas = Produto.objects.filter(cat__iexact=2)
     return render(request,"cardapio/bebida/index.html", {'bebidas':bebidas}) 
 
+def cardapioBebidaView(request, id):
+    bebida = Produto.objects.get(id=id)
+    bebidaInfo = ProdutoInfo.objects.filter(produto_id=id)
+    return render(request, 'cardapio/bebida/viewBebida.html', {'bebida':bebida, 'bebidaInfo':bebidaInfo})
+
 def cardapioBebidaInsert(request) :
     novaBebida = Produto(cat=2)
     if request.method == "POST":
@@ -100,18 +111,18 @@ def pedidosIndex(request) :
     return render(request,"pedidos/index.html",{'pedidos':pedidos}) 
 
 def indexContPedidos(request):
-    if datetime.now().time()> time(23,59):
-        startdate =  datetime.now()
-        startdate = startdate.replace(hour=18,minute=0,second=0)
-        enddate = startdate + timedelta(days=1)
-        enddate = enddate.replace(hour=5,minute=0,second=0)
-    else:
-        startday =  datetime.now() - timedelta(days=1)
-        startday = startday.replace(hour=18,minute=0,second=0)
-        enddate = datetime.now()
-        endday= enddate.replace(hour=5,minute=0,second=0) 
-    pedidoshoje = Pedido.objects.filter(tempo__range=[startday,endday]).count() #filter =today
-    return render(request,'index.html', {'pedidoshoje':pedidoshoje})
+    # if datetime.now().time()> time(23,59):
+    #     startdate =  datetime.now()
+    #     startdate = startdate.replace(hour=18,minute=0,second=0)
+    #     enddate = startdate + timedelta(days=1)
+    #     enddate = enddate.replace(hour=5,minute=0,second=0)
+    # else:
+    #     startday =  datetime.now() - timedelta(days=1)
+    #     startday = startday.replace(hour=18,minute=0,second=0)
+    #     enddate = datetime.now()
+    #     endday= enddate.replace(hour=5,minute=0,second=0) 
+    pedidoshoje = Pedido.objects.all().count() #filter =today
+    return render(request, 'index.html', {'pedidoshoje':pedidoshoje})
 
 def pedidosInsert(request) :
     novoPedido = Pedido()

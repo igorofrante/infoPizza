@@ -1,38 +1,50 @@
 {% include 'navbar.html' %}
 {% load static %}
 
-<!DOCTYPE html>  
-<html lang="pt-br">  
-<head>  
-    <meta charset="UTF-8">  
-    <title>Pedidos</title>  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">   
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>  
-<body>  
-<table class="table table-striped table-bordered table-sm">  
-    <thead class="thead-dark">  
-    <tr>  
-        <th>Pedido</th>
-        <th>Status</th>
-        <th>Anotar</th>
-    </tr>  
-    </thead>  
-    <tbody>  
-{% for pedido in pedidos %}  
-    <tr>  
-        <td>{{ pedido.id }}</td>
-        <td>{{ pedido.status }}</td>
-        <td>  
-            <a href="/pedidos/mesa/order/{{ mesa.id }}" class="bi bi-pencil-square"></a>  
-        </td>  
-    </tr>  
-{% endfor %}  
-    </tbody>  
-</table>  
-<br>  
-<br>  
-<a href="/pedidos/insert" class="btn btn-primary"><i class="bi bi-plus-circle">Inserir Pedido</i></a>  
-</body>  
-</html>  
+</head>
+
+<body>
+    <div class="col8 m-auto pt-3 pb-3 text-center">
+        <h1>Pedidos</h1>
+    </div>
+
+    <div class="col8 p-3 text-center">
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pedido</th>
+                    <th>Status</th>
+                    <th>Anotar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>{{ pedido.id }}</td>
+                    <td>{{ pedido.status }}</td>
+                    <td>
+                        <a href="/pedidos/mesa/order/{{ mesa.id }}" class="bi bi-pencil-square"></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col8 text-center">
+        <a href="/pedidos/insert" class="btn btn-primary"><i class="bi bi-plus-circle"> Inserir</i></a>
+    </div>
+    
+</body>
+
+</html>

@@ -19,27 +19,35 @@
         <h1>Cardapio - Pizza</h1>
     </div>
 
-    <table class="table table-striped table-bordered table-sm">  
-        <thead class="thead-dark">  
-        <tr>  
-            <th>Nome da  Pizza</th>
-            <th>Ações</th>
-        </tr>  
-        </thead>  
+    <div class="col8 m-auto p-3 text-center">
+        <table class="table table-striped table-bordered table-sm">  
+            <thead class="thead-dark">  
+            <tr>  
+                <th>Nome da  Pizza</th>
+                <th>Ações</th>
+            </tr>  
+            </thead>  
+    
+            <tbody>  
+            {% for pizza in pizzas %}  
+            <tr>  
+                <td>{{ pizza.nome }}</td>    
+                <td>  
+                    <a href="/cardapio/pizza/viewPizza/{{ pizza.id }}" class="bi bi-card-text"></a>
+                    <a href="{% url 'cardapioPizzaUpdate' pizza.id %}" class="bi bi-pencil"></a>  
+                    <a href="/cardapio/pizza/delete/{{ pizza.id }}" class="bi bi-trash3"></a>  
+                </td>  
+            </tr>  
+            {% endfor %}  
+            </tbody>  
+        </table>  
+    </div>
 
-        <tbody>  
-        {% for pizza in pizzas %}  
-        <tr>  
-            <td>{{ pizza.nome }}</td>    
-            <td>  
-                <a href="{% url 'cardapioPizzaUpdate' pizza.id %}" class="bi bi-pencil"></a>  
-                <a href="/cardapio/pizza/delete/{{ pizza.id }}" class="bi bi-trash3"></a>  
-            </td>  
-        </tr>  
-        {% endfor %}  
-        </tbody>  
-    </table>  
-    <a href="{% url 'cardapioPizzaInsert' %}" class="btn btn-primary m-auto text-center"><i class="bi bi-plus-circle"> Inserir</i></a> 
+    <div class="col8 m-auto text-center">
+        <a href="{% url 'cardapioPizzaInsert' %}" class="btn btn-primary m-auto text-center"><i class="bi bi-plus-circle"> Inserir</i></a> 
+    </div>
+    
+   
 
     <script src="{% static 'javascript.js' %}"></script>
     

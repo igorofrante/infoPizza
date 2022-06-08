@@ -148,3 +148,53 @@ DEBUG:root:<MultiValueDict: {}>
 DEBUG:root:<MultiValueDict: {}>
 DEBUG:root:<MultiValueDict: {}>
 INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['onhNrg7EwMUl6e3CLgQY2OvEzmw5tBT7I6cgnK4gr0Lxo4bnkGeWJinUvzwTpjQD'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['onhNrg7EwMUl6e3CLgQY2OvEzmw5tBT7I6cgnK4gr0Lxo4bnkGeWJinUvzwTpjQD'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['onhNrg7EwMUl6e3CLgQY2OvEzmw5tBT7I6cgnK4gr0Lxo4bnkGeWJinUvzwTpjQD'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['onhNrg7EwMUl6e3CLgQY2OvEzmw5tBT7I6cgnK4gr0Lxo4bnkGeWJinUvzwTpjQD'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['1.50'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\views.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['9EQttiAHNItNkv11Yr8ULy3cSu2wYGZYtnLWpMxjIWkZCl9MxRwSs2VsOH2kUoWu'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['9'], 'form2-0-tamanho': ['16'], 'form2-0-preco': ['54.00'], 'form2-1-produto': ['1'], 'form2-1-tamanho': ['1'], 'form2-1-preco': ['1.50'], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['9EQttiAHNItNkv11Yr8ULy3cSu2wYGZYtnLWpMxjIWkZCl9MxRwSs2VsOH2kUoWu'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['9'], 'form2-0-tamanho': ['16'], 'form2-0-preco': ['54.00'], 'form2-1-produto': ['1'], 'form2-1-tamanho': ['1'], 'form2-1-preco': ['1.50'], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['9EQttiAHNItNkv11Yr8ULy3cSu2wYGZYtnLWpMxjIWkZCl9MxRwSs2VsOH2kUoWu'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['9'], 'form2-0-tamanho': ['16'], 'form2-0-preco': ['54.00'], 'form2-1-produto': ['1'], 'form2-1-tamanho': ['1'], 'form2-1-preco': ['1.50'], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['9EQttiAHNItNkv11Yr8ULy3cSu2wYGZYtnLWpMxjIWkZCl9MxRwSs2VsOH2kUoWu'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['0'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-produto': ['9'], 'form2-0-tamanho': ['16'], 'form2-0-preco': ['54.00'], 'form2-1-produto': ['1'], 'form2-1-tamanho': ['1'], 'form2-1-preco': ['1.50'], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['0'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-produto': ['2'], 'form3-0-tamanho': ['5'], 'form3-0-preco': ['21.00'], 'form3-1-produto': [''], 'form3-1-tamanho': [''], 'form3-1-preco': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>
+DEBUG:root:<MultiValueDict: {}>

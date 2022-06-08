@@ -10,6 +10,7 @@ from django.forms import ModelChoiceField, inlineformset_factory
 from django.db.models.fields import BLANK_CHOICE_DASH
 
 class ProdutoForm(forms.ModelForm):
+    desc = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Produto
         fields = ('nome','desc')
