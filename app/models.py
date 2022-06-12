@@ -1,4 +1,8 @@
+from cProfile import label
+from enum import unique
 from django.db import models
+from localflavor.br.models import BRCPFField, BRPostalCodeField
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -38,3 +42,19 @@ class Mesa(models.Model):
     pedido = models.ForeignKey(Pedido,on_delete=models.CASCADE)
     class Meta:
         db_table = "mesa"
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=200)
+    sobrenome = models.CharField(max_length=200)
+    cpf = BRCPFField(unique=True)
+    telefone = PhoneNumberField()
+    cep = BRPostalCodeField()
+    logradouro = models.CharField(max_length=200)
+    numero = models.PositiveIntegerField()
+    complemento = models.CharField(max_length=200, null=True)
+    bairro = models.CharField(max_length=200)
+    cidade = models.CharField(max_length=200)
+    referencia = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = "cliente"

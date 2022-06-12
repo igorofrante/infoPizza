@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{ bebida.nome }}</td>
                     <td> 
-                        <a href="/cardapio/bebida/viewBebida/{{ bebida.id }}" class="bi bi-card-text"></a>
+                        <a href="/cardapio/bebida/view/{{ bebida.id }}" class="bi bi-card-text"></a>
                         <a href="{% url 'cardapioBebidaUpdate' bebida.id %}" class="bi bi-pencil"></a>
                         <a href="/cardapio/bebida/delete/{{ bebida.id }}" class="bi bi-trash3"></a>
                     </td>

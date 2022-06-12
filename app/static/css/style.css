@@ -40,3 +40,36 @@ ul li a:hover{
     display: block;
 }
 
+/* Geral */
+label {
+    width: 105px;
+}
+input {
+    width: 300px;
+}
+textarea {
+    width: 300px;
+}
+
+/* cardapio */
+#teste input{
+    width: 100px;
+}
+
+#teste input[type=checkbox] {
+    width: 50px;
+}
+
+/* cliente */
+#form input#id_telefone_1 {
+    width: 200px;
+}
+
+select#id_telefone_0 {
+    padding: 2px;
+    width: 100px;
+}
+
+.card bg-primary mb-3{
+    
+}

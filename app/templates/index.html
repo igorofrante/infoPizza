@@ -57,7 +57,7 @@
             <h5>Clientes:</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="">Criar Cliente</a>
+                <a class="btn btn-primary  btn-sm btn-block" href="cliente/form">Criar Cliente</a>
                 <table class="table table-sm">
                     <tr>
                         <th></th>
@@ -73,7 +73,7 @@
             <h5>Ultimos 5 Pedidos</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="pedidos/insert">Criar Pedido</a>
+                <a class="btn btn-primary  btn-sm btn-block" href="{% url 'pedidosInsert' %}">Criar Pedido</a>
                 <table class="table table-sm">
                     <tr>
                         <th>Product</th>

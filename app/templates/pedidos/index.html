@@ -34,6 +34,8 @@
                     <td>{{ pedido.status }}</td>
                     <td>
                         <a href="/pedidos/mesa/order/{{ mesa.id }}" class="bi bi-pencil-square"></a>
+                        <a href="{% url 'pedidosUpdate' pedido.id %}" class="bi bi-pencil"></a>
+                        <a href="/pedidos/delete/{{ pedido.id }}" class="bi bi-trash3"></a>  
                     </td>
                 </tr>
                 {% endfor %}
@@ -42,8 +44,10 @@
     </div>
 
     <div class="col8 text-center">
-        <a href="/pedidos/insert" class="btn btn-primary"><i class="bi bi-plus-circle"> Inserir</i></a>
+        <a href="{% url 'pedidosInsert' %}" class="btn btn-primary"><i class="bi bi-plus-circle"> Inserir</i></a>
     </div>
+
+    <script src="{% static 'javascript.js' %}"></script>
     
 </body>
 
