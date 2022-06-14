@@ -71,7 +71,9 @@
                     $(function () {
                         var url = '/pedidos/ajax/tamanho'
                         var produtoID = $('#id_form' + id + '-' + index + '-produto').val();
-                        var pedido = $('pedido')
+                        var pedido = window.location.pathname
+                        var re = new RegExp('\d+');
+                        pedido = re.exec(pedido);
                         $.ajax({
                             url: url,
                             data: {
@@ -84,20 +86,6 @@
                         });
                     });
 
-                   $(function () {
-                        var url = '/pedidos/ajax/preco'
-                        var tamanhoID = $('#id_form' + id + '-' + index + '-tamanho').val();
-
-                        $.ajax({
-                            url: url,
-                            data: {
-                                'tamanho': tamanhoID
-                            },
-                            success: function (data) {
-                                $('#id_form' + id + '-' + index + '-preco').val(data);
-                            }
-                        });
-                    });
                 }
             }
 
