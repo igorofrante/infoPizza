@@ -1,8 +1,3 @@
-{% for tamanho in tamanhos %}
-{% if tamanho.id == pedido.id %}
-<option value="{{ tamanho.id }}" selected>{{ tamanho.tamanho }}</option>
-<option value="{{ tamanho.id }}">{{ tamanho.tamanho }}</option>
-{%else%}
-<option value="{{ tamanho.id }}">{{ tamanho.tamanho }}</option>
-{%endif%} 
+{% for tamanhox in tamanhos %}
+<option value="{{ tamanhox.id }}">{{ tamanhox.tamanho }}</option>
 {% endfor %}

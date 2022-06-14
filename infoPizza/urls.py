@@ -40,6 +40,7 @@ urlpatterns = [
     path('pedidos/form/', views.pedidosInsert, name='pedidosInsert'),
     path('pedidos/ajax/tamanhos', views.load_tamanhos, name='ajax_load_tamanhos'),
     path('pedidos/ajax/preco', views.load_preco),
+    path('pedidos/ajax/tamanho', views.load_tamanho, name='ajax_load_tamanhos'),
     path('pedidosUpdate/<int:id>', views.pedidosUpdate, name='pedidosUpdate'),
     path('pedidos/delete/<int:id>', views.pedidoDestroy),
 

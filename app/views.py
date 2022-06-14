@@ -30,8 +30,8 @@ def cardapioPizzaView(request, id):
 def cardapioPizzaInsert(request) :
     novaPizza = Produto(cat=1)
     if request.method == "POST":
-        form = ProdutoForm(request.POST, request.FILES, instance=novaPizza, prefix='form')
-        form2 = PizzaFormset(request.POST, request.FILES, instance=novaPizza, prefix='form2')
+        form = ProdutoForm(request.POST,instance=novaPizza, prefix='form')
+        form2 = PizzaFormset(request.POST,instance=novaPizza, prefix='form2')
         if form.is_valid() and form2.is_valid():   
             form.save()
             form2.save()
@@ -44,8 +44,8 @@ def cardapioPizzaInsert(request) :
 def cardapioPizzaUpdate(request, id):  
     pizza = Produto.objects.get(id=id)
     if request.method == 'POST':
-        form = ProdutoForm(request.POST, request.FILES, instance=pizza, prefix='form')
-        form2 = PizzaFormset(request.POST, request.FILES, instance=pizza, prefix='form2')
+        form = ProdutoForm(request.POST,instance=pizza, prefix='form')
+        form2 = PizzaFormset(request.POST,instance=pizza, prefix='form2')
         if form.is_valid() and form2.is_valid():  
             form.save()
             form2.save()
@@ -75,8 +75,8 @@ def cardapioBebidaView(request, id):
 def cardapioBebidaInsert(request) :
     novaBebida = Produto(cat=2)
     if request.method == "POST":
-        form = ProdutoForm(request.POST, request.FILES, instance=novaBebida, prefix='form')
-        form2 = BebidaFormset(request.POST, request.FILES, instance=novaBebida, prefix='form2')
+        form = ProdutoForm(request.POST,instance=novaBebida, prefix='form')
+        form2 = BebidaFormset(request.POST,instance=novaBebida, prefix='form2')
         if form.is_valid() and form2.is_valid():  
             form.save()
             form2.save()
@@ -162,7 +162,7 @@ def indexContPedidos(request):
 def pedidosInsert(request) :
     novoPedido = Pedido()
     if request.method == "POST":
-        form = PedidoForm(request.POST, request.FILES, instance=novoPedido, prefix='form')
+        form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
 
@@ -183,10 +183,11 @@ def pedidosInsert(request) :
 def pedidosUpdate(request, id):
     pedido = Pedido.objects.get(id=id)
     if request.method == "POST":
-        form = PedidoForm(request.POST, request.FILES, instance=pedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=pedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=pedido, prefix='form3')
-
+        form = PedidoForm(request.POST,instance=pedido, prefix='form')
+        form2 = PedidoPizzaFormset(request.POST,instance=pedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST,instance=pedido, prefix='form3')
+        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
+        logging.debug(request.POST)
         if form.is_valid() and form2.is_valid() and form3.is_valid():  
             try:  
                 form.save()
@@ -205,6 +206,13 @@ def load_tamanhos(request):
     produto_id = request.GET.get('produto')
     tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
     return render(request, 'pedidos/ajax/tamanhos.html', {'tamanhos': tamanhos})
+
+def load_tamanho(request):
+    produto_id = request.GET.get('produto')
+    pedido_id = request.GET.get('pedido')
+    tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
+    tamanho = ItensPedido.objects.filter(pedido=pedido_id).filter(produto=produto_id).values_list('tamanho',flat=True)[0]
+    return render(request, 'pedidos/ajax/tamanho.html', {'tamanhos': tamanhos,'tamanho':tamanho})
 
 def load_preco(request):
     tamanho = request.GET.get('tamanho')

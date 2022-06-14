@@ -1,8 +1,8 @@
-from django import forms  
 from app.models import *  
 from django.forms import ModelChoiceField, inlineformset_factory  
 from django.db.models.fields import BLANK_CHOICE_DASH
-from localflavor.br.forms import BRZipCodeField, BRCPFField
+from django import forms  
+from localflavor.br.forms import BRCPFField,BRZipCodeField
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
@@ -102,7 +102,7 @@ class clienteForm(forms.ModelForm):
     telefone = PhoneNumberField(
         widget=PhoneNumberPrefixWidget(initial='BR')
         )
-    cep = BRZipCodeField() 
+    cep = BRZipCodeField(max_length=9) 
     class Meta:
         model = Cliente
         fields = '__all__'

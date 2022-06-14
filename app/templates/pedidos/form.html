@@ -28,6 +28,7 @@
             <h5 class="text-info">Pizzas </h5>
             {{ form2.management_form }}
             {% for formx in form2 %}
+            {% if pedido %} {{ formx.id|default:pedido.id }} {% endif %}
             {{ formx.produto.label }} {{ formx.produto }}
             {{ formx.tamanho.label }} {{ formx.tamanho }}
             {{ formx.preco.label }} {{ formx.preco }}
@@ -39,6 +40,7 @@
             <h5 class="text-info">Bebidas </h5>
             {{ form3.management_form }}
             {% for formx in form3 %}
+            {% if pedido %} {{ formx.id|default:pedido.id }} {% endif %}
             {{ formx.produto.label }} {{ formx.produto }}
             {{ formx.tamanho.label }} {{ formx.tamanho }}
             {{ formx.preco.label }} {{ formx.preco }}
@@ -72,9 +74,10 @@
                         var url = '/pedidos/ajax/tamanho'
                         var produtoID = $('#id_form' + id + '-' + index + '-produto').val();
                         var pedido = window.location.pathname
-                        var re = new RegExp('\d+');
-                        pedido = re.exec(pedido);
-                        $.ajax({
+                        var re = /\d+/g;
+                        pedido = pedido.match(re)[0];
+                        if (produtoID != '') {
+                            $.ajax({
                             url: url,
                             data: {
                                 'produto': produtoID,
@@ -84,6 +87,8 @@
                                 $('#id_form' + id + '-' + index + '-tamanho').html(data);
                             }
                         });
+                        }
+                       
                     });
 
                 }
