@@ -68,27 +68,44 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+                currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+}
               for (let id = 2; id < 4; id++) {
                 for (let index = 0; index < $('#id_form' + id + '-TOTAL_FORMS').val(); index++) {
                     $(function () {
-                        var url = '/pedidos/ajax/tamanho'
+                        var url = '/pedidos/ajax/tamanhos'
                         var produtoID = $('#id_form' + id + '-' + index + '-produto').val();
-                        var pedido = window.location.pathname
-                        var re = /\d+/g;
-                        pedido = pedido.match(re)[0];
+                        
                         if (produtoID != '') {
                             $.ajax({
                             url: url,
                             data: {
                                 'produto': produtoID,
-                                'pedido': pedido
                             },
                             success: function (data) {
                                 $('#id_form' + id + '-' + index + '-tamanho').html(data);
                             }
+                           
                         });
-                        }
+                        sleep(100);
+                        var url = '/pedidos/ajax/tamanho'
+                        var idx = $('#id_form' + id + '-' + index + '-id').val();
+                        $.ajax({
+                            url: url,
+                            data: {
+                                'idx':idx
+                            },
+                            success: function (data) {
+                                $('#id_form' + id + '-' + index + '-tamanho option[value='+data+']').attr("selected", "selected");
+                            }
+                        });
                        
+                        }
                     });
 
                 }
@@ -101,6 +118,9 @@
                         var url = '/pedidos/ajax/tamanhos'
                         var produtoID = $(this).val();
 
+                        $('#id_form' + id + '-' + index + '-tamanho').val('');
+                        $('#id_form' + id + '-' + index + '-preco').val('');
+
                         $.ajax({
                             url: url,
                             data: {
@@ -110,6 +130,7 @@
                                 $('#id_form' + id + '-' + index + '-tamanho').html(data);
                             }
                         });
+            
                     });
 
                     $('#id_form' + id + '-' + index + '-tamanho').change(function () {

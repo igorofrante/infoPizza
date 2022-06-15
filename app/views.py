@@ -182,12 +182,11 @@ def pedidosInsert(request) :
 
 def pedidosUpdate(request, id):
     pedido = Pedido.objects.get(id=id)
+    pdd = pedido
     if request.method == "POST":
         form = PedidoForm(request.POST,instance=pedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,instance=pedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,instance=pedido, prefix='form3')
-        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-        logging.debug(request.POST)
+        form2 = PedidoPizzaFormset(request.POST,instance=pdd, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST,instance=pdd, prefix='form3')
         if form.is_valid() and form2.is_valid() and form3.is_valid():  
             try:  
                 form.save()
@@ -198,8 +197,8 @@ def pedidosUpdate(request, id):
                 pass  
     else:  
         form = PedidoForm(instance=pedido,prefix='form')
-        form2 = PedidoPizzaFormset(instance=pedido,prefix='form2')
-        form3 = PedidoBebidaFormset(instance=pedido,prefix='form3')
+        form2 = PedidoPizzaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=1),prefix='form2')
+        form3 = PedidoBebidaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=2),prefix='form3')
     return render(request,'pedidos/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido})
         
 def load_tamanhos(request):
@@ -208,11 +207,9 @@ def load_tamanhos(request):
     return render(request, 'pedidos/ajax/tamanhos.html', {'tamanhos': tamanhos})
 
 def load_tamanho(request):
-    produto_id = request.GET.get('produto')
-    pedido_id = request.GET.get('pedido')
-    tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
-    tamanho = ItensPedido.objects.filter(pedido=pedido_id).filter(produto=produto_id).values_list('tamanho',flat=True)[0]
-    return render(request, 'pedidos/ajax/tamanho.html', {'tamanhos': tamanhos,'tamanho':tamanho})
+    itensPedido_id = request.GET.get('idx')
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+    return render(request, 'pedidos/ajax/tamanho.html', {'tamanho':tamanho})
 
 def load_preco(request):
     tamanho = request.GET.get('tamanho')

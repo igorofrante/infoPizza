@@ -1,18 +1,25 @@
-ERROR:django.request:Internal Server Error: /pedidosUpdate/1
-Traceback (most recent call last):
-  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py", line 190, in pedidosUpdate
-    logging.debug(form2.errors.as_data())
-AttributeError: 'list' object has no attribute 'as_data'
+DEBUG:root:1
+DEBUG:root:2
+DEBUG:root:5
+DEBUG:root:1
+DEBUG:root:2
+DEBUG:root:5
+DEBUG:root:1
+DEBUG:root:2
+DEBUG:root:5
+DEBUG:root:1
+DEBUG:root:9
+DEBUG:root:5
+DEBUG:root:1
+DEBUG:root:9
+DEBUG:root:7
+DEBUG:root:1
+DEBUG:root:4
+DEBUG:root:7
+DEBUG:root:1
+DEBUG:root:4
+DEBUG:root:7
+DEBUG:root:1
+DEBUG:root:4
+DEBUG:root:7
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
-DEBUG:root:[{'id': ['Este campo é obrigatório.']}, {'produto': ['Este campo é obrigatório.'], 'tamanho': ['Este campo é obrigatório.'], 'id': ['Este campo é obrigatório.']}, {}, {}]
-DEBUG:root:[{'id': ['Este campo é obrigatório.']}, {}, {}]
-INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
-DEBUG:root:[{'id': ['Este campo é obrigatório.']}, {}, {}]
-DEBUG:root:[{'id': ['Este campo é obrigatório.']}, {}, {}]
-INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
-DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['HUs26UvaWJ7IeFwrNVwRSghWUYsrjoSfzvkZbf7nmdRl4TAi5z719u7UTiaOE6pG'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['2'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-id': ['1'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['20.00'], 'form2-1-id': ['2'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': ['20.00'], 'form2-2-id': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-3-id': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['2'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-id': ['1'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': ['20.00'], 'form3-1-id': ['2'], 'form3-1-produto': ['2'], 'form3-1-tamanho': ['5'], 'form3-1-preco': ['20.00'], 'form3-2-id': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-3-id': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form-obs': ['']}>
-DEBUG:root:<QueryDict: {'csrfmiddlewaretoken': ['HYcLtnsWB3i6fn6rsjR7RAUufOYFsIw3zz4IyI491x2J5BaiKXsh8OKse8G2Nq3u'], 'form2-TOTAL_FORMS': ['4'], 'form2-INITIAL_FORMS': ['2'], 'form2-MIN_NUM_FORMS': ['0'], 'form2-MAX_NUM_FORMS': ['4'], 'form2-0-id': ['1'], 'form2-0-produto': ['1'], 'form2-0-tamanho': ['1'], 'form2-0-preco': ['20.00'], 'form2-1-id': ['2'], 'form2-1-produto': [''], 'form2-1-tamanho': [''], 'form2-1-preco': ['20.00'], 'form2-1-DELETE': ['on'], 'form2-2-id': [''], 'form2-2-produto': [''], 'form2-2-tamanho': [''], 'form2-2-preco': [''], 'form2-2-DELETE': ['on'], 'form2-3-id': [''], 'form2-3-produto': [''], 'form2-3-tamanho': [''], 'form2-3-preco': [''], 'form2-3-DELETE': ['on'], 'form3-TOTAL_FORMS': ['4'], 'form3-INITIAL_FORMS': ['2'], 'form3-MIN_NUM_FORMS': ['0'], 'form3-MAX_NUM_FORMS': ['4'], 'form3-0-id': ['1'], 'form3-0-produto': [''], 'form3-0-tamanho': [''], 'form3-0-preco': ['20.00'], 'form3-0-DELETE': ['on'], 'form3-1-id': ['2'], 'form3-1-produto': ['2'], 'form3-1-tamanho': ['5'], 'form3-1-preco': ['20.00'], 'form3-2-id': [''], 'form3-2-produto': [''], 'form3-2-tamanho': [''], 'form3-2-preco': [''], 'form3-2-DELETE': ['on'], 'form3-3-id': [''], 'form3-3-produto': [''], 'form3-3-tamanho': [''], 'form3-3-preco': [''], 'form3-3-DELETE': ['on'], 'form-obs': ['']}>

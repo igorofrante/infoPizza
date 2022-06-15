@@ -63,6 +63,7 @@ class ItensPedidoForm(forms.ModelForm):
         self.fields['preco'].widget.attrs['readonly'] = True
         if self.data != {}:
             self.fields['tamanho'].queryset = ProdutoInfo.objects.all()
+
                  
     class Meta:
         model = ItensPedido
