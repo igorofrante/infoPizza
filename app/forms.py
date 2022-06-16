@@ -162,13 +162,10 @@ class mesaForm(forms.ModelForm):
     )
     class Meta:
         model = Mesa
-        # fields = '__all__'
+        #fields = '__all__'
         exclude = ['pedido']
 
     # def __init__(self, *args, **kwargs):
-    #     instance = kwargs.get('instance', None)
-    #     super(mesaForm, self).__init__(*args, **kwargs)
-    #     if self.data != {}:
-    #         self.fields['pedido'].initial = self.instance.id
-    #         logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-    #         logging.debug(self.instance)
+    #      super(mesaForm, self).__init__(*args, **kwargs)
+    #      if self.data != {}:
+    #          self.fields['pedido'] = self.instance

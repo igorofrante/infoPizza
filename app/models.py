@@ -55,7 +55,7 @@ class ItensPedido(models.Model):
         db_table = "itensPedido"
 
 class Mesa(models.Model):
-    pedido = models.ForeignKey(Pedido,null=True,on_delete=models.CASCADE)
+    pedido = models.IntegerField(null=True)
     class Meta:
         db_table = "mesa"
 

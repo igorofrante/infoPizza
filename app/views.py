@@ -1,4 +1,5 @@
 from dataclasses import fields
+from re import M
 from django.shortcuts import redirect, render
 from django.db.models import Sum
 from app.forms import * 
@@ -89,8 +90,8 @@ def cardapioBebidaInsert(request) :
 def cardapioBebidaUpdate(request, id):  
     bebida = Produto.objects.get(id=id)
     if request.method == 'POST':
-        form = ProdutoForm(request.POST,request.FILES, instance=bebida, prefix='form')
-        form2 = BebidaFormset(request.POST,request.FILES, instance=bebida, prefix='form2')
+        form = ProdutoForm(request.POST, instance=bebida, prefix='form')
+        form2 = BebidaFormset(request.POST, instance=bebida, prefix='form2')
         if form.is_valid() and form2.is_valid():  
             form.save()
             form2.save()
@@ -170,8 +171,8 @@ def pedidosDeliveryInsert(request) :
     novoPedido = Pedido(cat=1)
     if request.method == "POST":
         form = PedidoDeliveryForm(request.POST,instance=novoPedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
+        form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
 
         if form.is_valid() and form2.is_valid() and form3.is_valid():  
             try:  
@@ -193,17 +194,15 @@ def pedidosMesaInsert(request) :
         form = PedidoMesaForm(request.POST,instance=novoPedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
-        form4 = mesaForm(request.POST, instance=novoPedido, prefix='form4')
-
+        form4 = mesaForm(request.POST, prefix='form4')
         if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():  
             try:  
                 form.save()
-                # logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-                # logging.debug(form4)
                 form2.save()
                 form3.save()
-                form4.save()
-               
+                mesa = Mesa.objects.get(id=request.POST['form4-id'])
+                mesa.pedido = form.instance.id    
+                mesa.save()        
                 return redirect('/pedido/mesa')  
             except:  
                 pass  
@@ -211,7 +210,7 @@ def pedidosMesaInsert(request) :
         form = PedidoMesaForm(instance=novoPedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
         form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
-        form4 = mesaForm(instance=novoPedido, prefix='form4')
+        form4 = mesaForm(instance=novoPedido,prefix='form4')
     return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3, 'form4':form4, 'titulo':'Anotar Pedido - Mesa'})  
 
 
