@@ -1,0 +1,74 @@
+{% include 'navbar.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="col8 m-auto pt-3 pb-3 text-center">
+        <h1>{{titulo}} <a href="" class="bi bi-arrow-clockwise"></a></h1>
+    </div>
+
+    <div class="col8 text-center">
+        {%if titulo == "Todos os pedidos"%}
+        <a href="/pedido/delivery/form" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Delivery</a>
+        <a href="/pedido/mesa/form" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Mesa</a>
+        {%elif titulo == "Pedidos - Delivery" %}
+        <a href="/pedido/delivery/form" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Pedido</a>
+        {%else%}
+        <a href="/pedido/mesa/form" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Pedido</a>
+        {%endif%}
+    </div>
+
+    <div class="col8 p-3 text-center">
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pedido</th>
+                    {%if titulo == "Todos os pedidos"%}
+                    <th>Categoria</th>
+                    {%endif%}
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>{{ pedido.id }}</td>
+                    {%if titulo == "Todos os pedidos"%}
+                    {%if pedido.cat == 1%}
+                    <td>Delivery</td>
+                    {%else%}
+                    <td>Presencial</td>
+                    {%endif%}
+                    {%endif%}
+                    
+                    <td>{{ pedido.status }}</td>
+                    <td>
+                        <a href="/pedido/form/{{pedido.id }} " class="bi bi-pencil"></a>
+                        <a href="/pedido/cancel/{{ pedido.id }}" class="bi bi-x-circle"></a>
+                        <a href="/pedido/delete/{{ pedido.id }}" class="bi bi-trash3"></a>  
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+   
+
+    <script src="{% static 'javascript.js' %}"></script>
+    
+</body>
+
+</html>

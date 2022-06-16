@@ -21,9 +21,17 @@
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label"></label>
                 <div class="col-sm-4">
-                    <h3>Inserir Pedido</h3>
+                    <h3>{{titulo}}</h3>
                 </div>
             </div>
+            {% if titulo == 'Anotar Pedido - Delivery' or titulo == 'Anotar Pedido - Mesa' %}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Cliente</label>
+                <div class="col-sm-4">
+                    {{ form.cliente }}
+                </div>
+            </div>
+            {%endif%}
 
             <h5 class="text-info">Pizzas </h5>
             {{ form2.management_form }}
@@ -50,6 +58,18 @@
             <br>
             <br>
             <div class="form-group row">
+                {% if pedido %}
+                <label class="col-sm-2 col-form-label">Status do Pedido</label>
+                <div class="col-sm-4">
+                    {{ form.status }}
+                </div>
+                {% endif %}
+                {% if titulo == 'Anotar Pedido - Delivery' %}
+                <label class="col-sm-2 col-form-label">Método de Pagamento</label>
+                <div class="col-sm-4">
+                    {{ form.metodoPag }}
+                </div>
+                {% endif %}
                 <label class="col-sm-2 col-form-label">Observacoes</label>
                 <div class="col-sm-4">
                     {{ form.obs }}
@@ -60,7 +80,7 @@
                 <label class="col-sm-1 col-form-label"></label>
                 <div class="col-sm-4">
                     <button type="submit" class="btn btn-primary">Confirmar</button>
-                    <a href="/pedidos" class="btn btn-danger">Cancelar</a>
+                    <a href="/pedido" class="btn btn-danger">Cancelar</a>
                 </div>
             </div>
         </div>
@@ -78,7 +98,7 @@
               for (let id = 2; id < 4; id++) {
                 for (let index = 0; index < $('#id_form' + id + '-TOTAL_FORMS').val(); index++) {
                     $(function () {
-                        var url = '/pedidos/ajax/tamanhos'
+                        var url = '/pedido/ajax/tamanhos'
                         var produtoID = $('#id_form' + id + '-' + index + '-produto').val();
                         
                         if (produtoID != '') {
@@ -93,7 +113,7 @@
                            
                         });
                         sleep(100);
-                        var url = '/pedidos/ajax/tamanho'
+                        var url = '/pedido/ajax/tamanho'
                         var idx = $('#id_form' + id + '-' + index + '-id').val();
                         $.ajax({
                             url: url,
@@ -115,7 +135,7 @@
             for (let id = 2; id < 4; id++) {
                 for (let index = 0; index < $('#id_form' + id + '-TOTAL_FORMS').val(); index++) {
                     $('#id_form' + id + '-' + index + '-produto').change(function () {
-                        var url = '/pedidos/ajax/tamanhos'
+                        var url = '/pedido/ajax/tamanhos'
                         var produtoID = $(this).val();
 
                         $('#id_form' + id + '-' + index + '-tamanho').val('');
@@ -134,7 +154,7 @@
                     });
 
                     $('#id_form' + id + '-' + index + '-tamanho').change(function () {
-                        var url = '/pedidos/ajax/preco'
+                        var url = '/pedido/ajax/preco'
                         var tamanhoID = $(this).val();
 
                         $.ajax({

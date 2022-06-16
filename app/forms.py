@@ -34,18 +34,50 @@ PizzaFormset = inlineformset_factory(Produto, ProdutoInfo, form=PizzaForm,  extr
 BebidaFormset = inlineformset_factory(Produto ,ProdutoInfo, form=BebidaForm,  extra=5, max_num=5, can_delete=True)
 
 # PEDIDO
-class PedidoForm(forms.ModelForm):
+class PedidoChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.nome+" "+obj.sobrenome+" ("+obj.cpf+")" 
+
+class PedidoDeliveryForm(forms.ModelForm):
+    obs = forms.CharField(required=False)
+    cliente = PedidoChoiceField(
+        widget=forms.Select,
+        queryset = Cliente.objects.all(),
+        to_field_name='id',
+        empty_label="Nenhum"
+    )
+    metodoPag = forms.CharField()
+    class Meta:
+        model = Pedido
+        fields = '__all__'
+        exclude = ('cat','status','tempo')
+
+class PedidoMesaForm(forms.ModelForm):
+    obs = forms.CharField(required=False)
+    cliente = PedidoChoiceField(
+        widget=forms.Select,
+        queryset = Cliente.objects.all(),
+        to_field_name='id',
+        empty_label="Nenhum",
+        required=False
+    )
+    class Meta:
+        model = Pedido
+        fields = '__all__'
+        exclude = ('cat','status','tempo','metodoPag')
+
+class PedidoForm2(forms.ModelForm):
     obs = forms.CharField(required=False)
     class Meta:
         model = Pedido
-        exclude = ('status','tempo','metodoPag')
+        exclude = ('cat','cliente','tempo','metodoPag')
 
-class MyModelChoiceField(ModelChoiceField):
+class ItensChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.nome
 
 class ItensPedidoForm(forms.ModelForm):
-    produto = MyModelChoiceField(
+    produto = ItensChoiceField(
         widget=forms.Select,
         queryset = Produto.objects.all().filter(cat=1),
         to_field_name='id',
@@ -70,7 +102,7 @@ class ItensPedidoForm(forms.ModelForm):
         fields = '__all__'
 
 class ItensPedidoForm2(forms.ModelForm):
-    produto = MyModelChoiceField(
+    produto = ItensChoiceField(
         widget=forms.Select,
         queryset = Produto.objects.all().filter(cat=2),
         to_field_name='id',
@@ -106,5 +138,5 @@ class clienteForm(forms.ModelForm):
     cep = BRZipCodeField(max_length=9) 
     class Meta:
         model = Cliente
-        fields = '__all__'
+        exclude = ['cadastro']
 

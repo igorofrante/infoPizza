@@ -16,6 +16,7 @@
 <body>
     <!-- Titulo -->
     <div class="col8 m-auto pt-3 pb-2 text-center">
+        <img src="{% static 'img/pizza.png' %}" alt="InfoPizza Logo" width="100" height="100" ><img>
         <h1>infoPizza</h1>
         <p>Seja bem vindo!</p>
     </div>
@@ -24,7 +25,7 @@
     <div class="row m-auto text-center justify-content-center">
         <div class="col-md-3">
             <div class="card bg-primary mb-3" style="max-width: 18rem; text-align: center;">
-                <div class="card-header"><h5 class="card-title">Total de Pedidos Hoje</h5></div>
+                <div class="card-header"><h5 class="card-title">Total de Pedidos</h5></div>
                 <div class="card-body">
                     <p class="card-text" style="font-size: 2rem">{{ pedidoshoje }}</p>
                 </div>
@@ -33,18 +34,18 @@
 
         <div class="col-md-3">
             <div class="card bg-primary mb-3" style="max-width: 18rem; text-align: center;">
-                <div class="card-header"><h5 class="card-title">...</h5></div>
+                <div class="card-header"><h5 class="card-title">Total Faturado</h5></div>
                 <div class="card-body">
-                    <p class="card-text" style="font-size: 2rem">...</p>
+                    <p class="card-text" style="font-size: 2rem">R$ {% load l10n %}{{ faturadohoje|unlocalize }}</p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card bg-primary mb-3" style="max-width: 18rem; text-align: center;">
-                <div class="card-header"><h5 class="card-title">...</h5></div>
+                <div class="card-header"><h5 class="card-title">Clientes novos</h5></div>
                 <div class="card-body">
-                    <p class="card-text" style="font-size: 2rem">...</p>
+                    <p class="card-text" style="font-size: 2rem">{{clientesnovoshoje}}</p>
                 </div>
             </div>
         </div>
@@ -54,10 +55,10 @@
     <div class="row m-auto">
         <!-- inserir clientes -->
         <div class="col-md-5 pl-4">
-            <h5>Clientes:</h5>
+            <h5>Clientes</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="cliente/form">Criar Cliente</a>
+                <a class="btn btn-primary  btn-sm btn-block" href="cliente/form">Cadastrar Cliente</a>
                 <table class="table table-sm">
                     <tr>
                         <th></th>
@@ -73,7 +74,8 @@
             <h5>Ultimos 5 Pedidos</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="{% url 'pedidosInsert' %}">Criar Pedido</a>
+                <a class="btn btn-primary  btn-sm btn-block" href="/pedido/delivery/form">Anotar Pedido Delivery</a>  
+                <a class="btn btn-primary  btn-sm btn-block" href="/pedido/mesa/form">Anotar Pedido Mesa</a>
                 <table class="table table-sm">
                     <tr>
                         <th>Product</th>
@@ -85,7 +87,12 @@
                 </table>
             </div>
         </div>
+        
     </div>
+    <div class="bug">
+        <a href="mailto:support@infopizza.com.br?subject=Relatao%20BUG"><i class="bi bi-bug-fill"></i></a>   
+    </div>
+    
 
 </body>
 

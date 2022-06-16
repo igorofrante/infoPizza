@@ -1,6 +1,8 @@
+from dataclasses import fields
 from datetime import datetime,time,timedelta
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.db.models import Sum
 from app.forms import * 
 from app.models import *
 import logging
@@ -12,10 +14,9 @@ import logging
 
 def index(request):
     pedidoshoje = Pedido.objects.all().count() #filter =today
-    return render(request, 'index.html', {'pedidoshoje':pedidoshoje})
-
-def cardapioIndex (request):
-    return render(request, 'cardapio/index.html')
+    faturadohoje=ItensPedido.objects.filter(pedido__status="Finalizado").aggregate(Sum('preco'))['preco__sum']
+    clientesnovoshoje = Cliente.objects.all().count()
+    return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje})
 
 # PIZZA
 def cardapioPizzaIndex(request):
@@ -39,7 +40,7 @@ def cardapioPizzaInsert(request) :
     else:  
         form = ProdutoForm(instance=novaPizza, prefix='form')
         form2 = PizzaFormset(instance=novaPizza, prefix='form2')
-    return render(request,'cardapio/pizza/form.html', {'form':form,'form2':form2})  
+    return render(request,'cardapio/pizza/form.html', {'form':form,'form2':form2,'titulo':'Cadastrar Pizza'})  
 
 def cardapioPizzaUpdate(request, id):  
     pizza = Produto.objects.get(id=id)
@@ -55,7 +56,7 @@ def cardapioPizzaUpdate(request, id):
     else:
         form = ProdutoForm(instance=pizza, prefix='form')
         form2 = PizzaFormset(instance=pizza, prefix='form2')
-    return render(request, 'cardapio/pizza/form.html', {'form':form,'form2':form2,'pizza':pizza})  
+    return render(request, 'cardapio/pizza/form.html', {'form':form,'form2':form2,'pizza':pizza,'titulo':'Editar Pizza'})  
 
 def cardapioPizzaDestroy(request, id):  
     pizza = Produto.objects.get(id=id)  
@@ -84,7 +85,7 @@ def cardapioBebidaInsert(request) :
     else:  
         form = ProdutoForm(instance=novaBebida, prefix='form')
         form2 = BebidaFormset(instance=novaBebida, prefix='form2')
-    return render(request,'cardapio/bebida/form.html', {'form':form, 'form2':form2})  
+    return render(request,'cardapio/bebida/form.html', {'form':form, 'form2':form2,'titulo':'Cadastrar Bebida'})  
 
 def cardapioBebidaUpdate(request, id):  
     bebida = Produto.objects.get(id=id)
@@ -98,7 +99,7 @@ def cardapioBebidaUpdate(request, id):
     else:
         form = ProdutoForm(instance=bebida, prefix='form')
         form2 = BebidaFormset(instance=bebida, prefix='form2')
-    return render(request, 'cardapio/bebida/form.html', {'form':form,'form2':form2,'bebida':bebida})  
+    return render(request, 'cardapio/bebida/form.html', {'form':form,'form2':form2,'bebida':bebida,'titulo':'Editar Bebida'})  
 
 def cardapioBebidaDestroy(request, id):  
     bebida = Produto.objects.get(id=id)  
@@ -112,7 +113,8 @@ def clienteIndex(request):
 
 def clienteView(request,id):
      cliente = Cliente.objects.get(id=id)
-     return render(request, 'cliente/view.html', {'cliente':cliente})
+     pedidos = Pedido.objects.filter(cliente=id)
+     return render(request, 'cliente/view.html', {'cliente':cliente,'pedidos':pedidos})
 
 def clienteInsert(request):
     if request.method == "POST":
@@ -122,7 +124,7 @@ def clienteInsert(request):
             return redirect('/cliente/')  
     else:  
         form = clienteForm()
-    return render(request,'cliente/form.html', {'form':form})  
+    return render(request,'cliente/form.html', {'form':form,'titulo':'Cadastrar Cliente'})  
 
 def clienteUpdate(request, id):
     cliente = Cliente.objects.get(id=id)
@@ -133,7 +135,7 @@ def clienteUpdate(request, id):
             return redirect('/cliente/')  
     else:  
         form = clienteForm(instance=cliente)
-    return render(request,'cliente/form.html', {'form':form})  
+    return render(request,'cliente/form.html', {'form':form,'titulo':'Editar Cliente'})  
 
 def clienteDestroy(request, id):
     cliente = Cliente.objects.get(id=id)
@@ -143,7 +145,13 @@ def clienteDestroy(request, id):
 # PEDIDO
 def pedidosIndex(request) :
     pedidos = Pedido.objects.all()
-    return render(request,"pedidos/index.html",{'pedidos':pedidos}) 
+    return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Todos os pedidos'}) 
+def pedidosDeliveryIndex(request) :
+    pedidos = Pedido.objects.filter(cat=1)
+    return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Pedidos - Delivery'}) 
+def pedidosMesaIndex(request) :
+    pedidos = Pedido.objects.filter(cat=2)
+    return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Pedidos - Mesa'})     
 
 def indexContPedidos(request):
     # if datetime.now().time()> time(23,59):
@@ -159,10 +167,10 @@ def indexContPedidos(request):
     pedidoshoje = Pedido.objects.all().count() #filter =today
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje})
 
-def pedidosInsert(request) :
-    novoPedido = Pedido()
+def pedidosDeliveryInsert(request) :
+    novoPedido = Pedido(cat=1)
     if request.method == "POST":
-        form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
+        form = PedidoDeliveryForm(request.POST,instance=novoPedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
 
@@ -171,20 +179,42 @@ def pedidosInsert(request) :
                 form.save()
                 form2.save()
                 form3.save()
-                return redirect('/pedidos')  
+                return redirect('/pedido/delivery')  
             except:  
                 pass  
     else:  
-        form = PedidoForm(instance=novoPedido,prefix='form')
+        form = PedidoDeliveryForm(instance=novoPedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
         form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
-    return render(request,'pedidos/form.html', {'form':form, 'form2':form2, 'form3':form3})  
+    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3,'titulo':'Anotar Pedido - Delivery'})  
+
+def pedidosMesaInsert(request) :
+    novoPedido = Pedido(cat=2)
+    if request.method == "POST":
+        form = PedidoMesaForm(request.POST,instance=novoPedido, prefix='form')
+        form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
+
+        if form.is_valid() and form2.is_valid() and form3.is_valid():  
+            try:  
+                form.save()
+                form2.save()
+                form3.save()
+                return redirect('/pedido/mesa')  
+            except:  
+                pass  
+    else:  
+        form = PedidoMesaForm(instance=novoPedido,prefix='form')
+        form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
+        form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
+    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3,'titulo':'Anotar Pedido - Mesa'})  
+
 
 def pedidosUpdate(request, id):
     pedido = Pedido.objects.get(id=id)
     pdd = pedido
     if request.method == "POST":
-        form = PedidoForm(request.POST,instance=pedido, prefix='form')
+        form = PedidoForm2(request.POST,instance=pedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST,instance=pdd, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST,instance=pdd, prefix='form3')
         if form.is_valid() and form2.is_valid() and form3.is_valid():  
@@ -192,31 +222,37 @@ def pedidosUpdate(request, id):
                 form.save()
                 form2.save()
                 form3.save()
-                return redirect('/pedidos')  
+                return redirect('/pedido')  
             except:  
                 pass  
     else:  
-        form = PedidoForm(instance=pedido,prefix='form')
+        form = PedidoForm2(instance=pedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=1),prefix='form2')
         form3 = PedidoBebidaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=2),prefix='form3')
-    return render(request,'pedidos/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido})
+    return render(request,'pedido/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido,'titulo':'Editar Pedido'})
         
 def load_tamanhos(request):
     produto_id = request.GET.get('produto')
     tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
-    return render(request, 'pedidos/ajax/tamanhos.html', {'tamanhos': tamanhos})
+    return render(request, 'pedido/ajax/tamanhos.html', {'tamanhos': tamanhos})
 
 def load_tamanho(request):
     itensPedido_id = request.GET.get('idx')
     tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
-    return render(request, 'pedidos/ajax/tamanho.html', {'tamanho':tamanho})
+    return render(request, 'pedido/ajax/tamanho.html', {'tamanho':tamanho})
 
 def load_preco(request):
     tamanho = request.GET.get('tamanho')
     preco = ProdutoInfo.objects.get(id=tamanho).preco
-    return render(request, 'pedidos/ajax/preco.html', {'preco': preco})
+    return render(request, 'pedido/ajax/preco.html', {'preco': preco})
+
+def pedidoCancel(resquest, id):
+    pedido = Pedido.objects.get(id=id)
+    pedido.status = "Cancelado"
+    pedido.save()
+    return redirect('/pedido/')
 
 def pedidoDestroy(resquest, id):
     pedido = Pedido.objects.get(id=id)
     pedido.delete()
-    return redirect('/pedidos/')
+    return redirect('/pedido/')
