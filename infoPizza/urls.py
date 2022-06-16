@@ -46,5 +46,7 @@ urlpatterns = [
     path('pedido/form/<int:id>', views.pedidosUpdate),
     path('pedido/cancel/<int:id>', views.pedidoCancel),
     path('pedido/delete/<int:id>', views.pedidoDestroy),
+    path('mesa/', views.mesaIndex),
+    path('mesa/insert/', views.mesaInsert),
 
 ]

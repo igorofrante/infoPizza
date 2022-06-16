@@ -1,10 +1,9 @@
 from dataclasses import fields
-from datetime import datetime,time,timedelta
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.db.models import Sum
 from app.forms import * 
 from app.models import *
+
 import logging
 
 # logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
@@ -192,14 +191,19 @@ def pedidosMesaInsert(request) :
     novoPedido = Pedido(cat=2)
     if request.method == "POST":
         form = PedidoMesaForm(request.POST,instance=novoPedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,request.FILES, instance=novoPedido, prefix='form3')
+        form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
+        form4 = mesaForm(request.POST, instance=novoPedido, prefix='form4')
 
-        if form.is_valid() and form2.is_valid() and form3.is_valid():  
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():  
             try:  
                 form.save()
+                # logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
+                # logging.debug(form4)
                 form2.save()
                 form3.save()
+                form4.save()
+               
                 return redirect('/pedido/mesa')  
             except:  
                 pass  
@@ -207,7 +211,8 @@ def pedidosMesaInsert(request) :
         form = PedidoMesaForm(instance=novoPedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
         form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
-    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3,'titulo':'Anotar Pedido - Mesa'})  
+        form4 = mesaForm(instance=novoPedido, prefix='form4')
+    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3, 'form4':form4, 'titulo':'Anotar Pedido - Mesa'})  
 
 
 def pedidosUpdate(request, id):
@@ -256,3 +261,15 @@ def pedidoDestroy(resquest, id):
     pedido = Pedido.objects.get(id=id)
     pedido.delete()
     return redirect('/pedido/')
+
+
+# MESA
+def mesaIndex(request):
+    mesas = Mesa.objects.all()
+    return render(request, 'mesa/index.html', {'mesas': mesas})
+
+def mesaInsert(request):
+    mesa = Mesa()
+    mesa.save()
+    return redirect('/mesa/')
+

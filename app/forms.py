@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from dataclasses import field, fields
 from app.models import *  
 from django.forms import ModelChoiceField, inlineformset_factory  
 from django.db.models.fields import BLANK_CHOICE_DASH
@@ -5,6 +7,8 @@ from django import forms
 from localflavor.br.forms import BRCPFField,BRZipCodeField
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
+import logging
 
 
 # cadastro PIZZA E BEBIDA
@@ -132,6 +136,11 @@ PedidoBebidaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedid
 
 class clienteForm(forms.ModelForm):
     cpf = BRCPFField()
+    dtnasc = forms.DateField(
+        widget=forms.SelectDateWidget(years=range(1922, 2022)), 
+        label='Data de Nascimento',
+        
+        )
     telefone = PhoneNumberField(
         widget=PhoneNumberPrefixWidget(initial='BR')
         )
@@ -140,3 +149,26 @@ class clienteForm(forms.ModelForm):
         model = Cliente
         exclude = ['cadastro']
 
+class MesaChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.id
+
+class mesaForm(forms.ModelForm):
+    id = MesaChoiceField(
+        widget=forms.Select,
+        queryset=Mesa.objects.filter(pedido=None),
+        to_field_name='id',
+        empty_label="Escolha",
+    )
+    class Meta:
+        model = Mesa
+        # fields = '__all__'
+        exclude = ['pedido']
+
+    # def __init__(self, *args, **kwargs):
+    #     instance = kwargs.get('instance', None)
+    #     super(mesaForm, self).__init__(*args, **kwargs)
+    #     if self.data != {}:
+    #         self.fields['pedido'].initial = self.instance.id
+    #         logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
+    #         logging.debug(self.instance)

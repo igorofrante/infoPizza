@@ -23,6 +23,7 @@ class Cliente(models.Model):
     nome = models.CharField(max_length=200)
     sobrenome = models.CharField(max_length=200)
     cpf = BRCPFField(unique=True)
+    dtnasc = models.DateField()  
     telefone = PhoneNumberField()
     cep = BRPostalCodeField()
     logradouro = models.CharField(max_length=200)
@@ -54,7 +55,6 @@ class ItensPedido(models.Model):
         db_table = "itensPedido"
 
 class Mesa(models.Model):
-    status = models.BooleanField(default=False)
     pedido = models.ForeignKey(Pedido,null=True,on_delete=models.CASCADE)
     class Meta:
         db_table = "mesa"

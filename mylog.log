@@ -23,3 +23,569 @@ DEBUG:root:1
 DEBUG:root:4
 DEBUG:root:7
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-pedido">Pedido:</label></th>
+    <td>
+      
+      <select name="form4-pedido" required id="id_form4-pedido">
+  <option value="" selected>---------</option>
+
+  <option value="1">Pedido object (1)</option>
+
+  <option value="2">Pedido object (2)</option>
+
+</select>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+DEBUG:root:<tr>
+    <th><label for="id_form4-pedido">Pedido:</label></th>
+    <td>
+      <ul class="errorlist"><li>Este campo é obrigatório.</li></ul>
+      <select name="form4-pedido" required id="id_form4-pedido">
+  <option value="" selected>---------</option>
+
+  <option value="1">Pedido object (1)</option>
+
+  <option value="2">Pedido object (2)</option>
+
+</select>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="">Escolha</option>
+
+  <option value="1" selected>1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 245, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 245, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\views.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-pedido">Pedido:</label></th>
+    <td>
+      
+      <select name="form4-pedido" required id="id_form4-pedido">
+  <option value="" selected>---------</option>
+
+  <option value="1">Pedido object (1)</option>
+
+  <option value="2">Pedido object (2)</option>
+
+  <option value="4">Pedido object (4)</option>
+
+</select>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+DEBUG:root:<tr>
+    <th><label for="id_form4-pedido">Pedido:</label></th>
+    <td>
+      <ul class="errorlist"><li>Este campo é obrigatório.</li></ul>
+      <select name="form4-pedido" required id="id_form4-pedido">
+  <option value="" selected>---------</option>
+
+  <option value="1">Pedido object (1)</option>
+
+  <option value="2">Pedido object (2)</option>
+
+  <option value="4">Pedido object (4)</option>
+
+</select>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="">Escolha</option>
+
+  <option value="1" selected>1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 245, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 245, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 198, in pedidosMesaInsert
+    if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 205, in is_valid
+    return self.is_bound and not self.errors
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 200, in errors
+    self.full_clean()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 433, in full_clean
+    self._clean_fields()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 438, in _clean_fields
+    for name, bf in self._bound_items():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 168, in _bound_items
+    yield name, self[name]
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 192, in __getitem__
+    bound_field = field.get_bound_field(self, name)
+AttributeError: 'Pedido' object has no attribute 'get_bound_field'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 198, in pedidosMesaInsert
+    if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 205, in is_valid
+    return self.is_bound and not self.errors
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 200, in errors
+    self.full_clean()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 433, in full_clean
+    self._clean_fields()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 438, in _clean_fields
+    for name, bf in self._bound_items():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 168, in _bound_items
+    yield name, self[name]
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 192, in __getitem__
+    bound_field = field.get_bound_field(self, name)
+AttributeError: 'NoneType' object has no attribute 'get_bound_field'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 196, in pedidosMesaInsert
+    form4 = mesaForm(request.POST, instance=novoPedido, prefix='form4')
+  File "C:\Projetos\InfoPizza\app\forms.py", line 169, in __init__
+    self.fields['pedido'].initial = self.instance
+KeyError: 'pedido'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 196, in pedidosMesaInsert
+    form4 = mesaForm(request.POST, instance=novoPedido, prefix='form4')
+  File "C:\Projetos\InfoPizza\app\forms.py", line 169, in __init__
+    self.fields['pedido'].initial = self.instance.id
+KeyError: 'pedido'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 196, in pedidosMesaInsert
+    form4 = mesaForm(request.POST, instance=novoPedido, prefix='form4')
+  File "C:\Projetos\InfoPizza\app\forms.py", line 170, in __init__
+    self.fields['pedido'].initial = instance.id
+KeyError: 'pedido'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:<tr>
+    <th><label for="id_form4-id">Id:</label></th>
+    <td>
+      
+      <select name="form4-id" required id="id_form4-id">
+  <option value="" selected>Escolha</option>
+
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+</select>
+      
+      
+        
+      
+    </td>
+  </tr>
+ERROR:django.request:Internal Server Error: /pedido/mesa/form/
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 198, in pedidosMesaInsert
+    if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 205, in is_valid
+    return self.is_bound and not self.errors
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 200, in errors
+    self.full_clean()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 433, in full_clean
+    self._clean_fields()
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 438, in _clean_fields
+    for name, bf in self._bound_items():
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 168, in _bound_items
+    yield name, self[name]
+  File "c:\Projetos\venv\lib\site-packages\django\forms\forms.py", line 192, in __getitem__
+    bound_field = field.get_bound_field(self, name)
+AttributeError: 'NoneType' object has no attribute 'get_bound_field'
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:Pedido object (None)
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 243, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 243, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:Pedido object (None)
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 243, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 243, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\forms.py changed, reloading.
+DEBUG:root:id_%s
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 247, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 247, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\views.py changed, reloading.
+DEBUG:root:id_%s
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+ERROR:django.request:Internal Server Error: /pedido/ajax/tamanho
+Traceback (most recent call last):
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Projetos\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Projetos\InfoPizza\app\views.py", line 246, in load_tamanho
+    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+  File "c:\Projetos\venv\lib\site-packages\django\db\models\query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Projetos\InfoPizza\app\views.py changed, reloading.
