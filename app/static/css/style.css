@@ -44,9 +44,13 @@ ul li a:hover{
 label {
     width: 105px;
 }
-input {
-    width: 300px;
+input[type=number]{
+    width: 100px;
 }
+input[type=text]{
+    width: 300px;
+} 
+
 textarea {
     width: 300px;
 }
