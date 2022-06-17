@@ -1,3 +1,4 @@
+{% include 'navbar.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -27,10 +28,16 @@
             <h5 class="text-info mt-3 mb-3">Tamanhos e Preços</h5>
             {{ form2.management_form }}
             {% for formx in form2 %}
-            {% if pizza %} {{ formx.id|default:pizza.id}} {% endif %}
+            {% if pizza %} 
+            {{ formx.id|default:pizza.id}}
             <div class="form-group mt-2" id="teste">
                 <p>{{ formx.tamanho.label }}: {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }} {{ formx.DELETE.label}} {{ formx.DELETE }}</p>
             </div>
+            {%else%}
+            <div class="form-group mt-2 " id="teste">
+                <p>{{ formx.tamanho.label }} {{ formx.tamanho }} | {{ formx.preco.label }} {{ formx.preco }} </p> 
+            </div>
+            {% endif %}
             {% endfor %}
 
             <input type="submit" class="btn btn-primary mt-3" value="Confirmar" name="submit">

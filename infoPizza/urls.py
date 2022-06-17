@@ -48,5 +48,7 @@ urlpatterns = [
     path('pedido/delete/<int:id>', views.pedidoDestroy),
     path('mesa/', views.mesaIndex),
     path('mesa/insert/', views.mesaInsert),
-
+    path('mesa/clean/<int:id>', views.mesaClean),
+    path('mesa/delete/<int:id>', views.mesaDestroy),
 ]
+    

@@ -15,6 +15,8 @@ import logging
 def index(request):
     pedidoshoje = Pedido.objects.all().count() #filter =today
     faturadohoje=ItensPedido.objects.filter(pedido__status="Finalizado").aggregate(Sum('preco'))['preco__sum']
+    if faturadohoje == None:
+        faturadohoje="00,00"
     clientesnovoshoje = Cliente.objects.all().count()
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje})
 
@@ -282,5 +284,16 @@ def mesaIndex(request):
 def mesaInsert(request):
     mesa = Mesa()
     mesa.save()
+    return redirect('/mesa/')
+
+def mesaClean(request,id):
+    mesa = Mesa.objects.get(id=id)
+    mesa.pedido = None
+    mesa.save()
+    return redirect('/mesa/')
+
+def mesaDestroy(request,id):
+    mesa = Mesa.objects.get(id=id)
+    mesa.delete()
     return redirect('/mesa/')
 

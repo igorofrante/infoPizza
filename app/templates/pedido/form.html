@@ -1,3 +1,4 @@
+{% include 'navbar.html' %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -35,14 +36,19 @@
             </div>
             {%else%}
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Cliente: {{ clienteinfo }}</label>
+                <label class="col-sm-2 col-form-label"><strong>Cliente:</strong> {{ clienteinfo }}</label>
                 <div class="col-sm-4">
                 </div>
             </div>
             {%endif%}
 
-            {% if titulo == 'Anotar Pedido - Mesa' %}        
-            {{form4.id}}
+            {% if titulo == 'Anotar Pedido - Mesa' %}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mesa</label>
+                <div class="col-sm-4">        
+                {{form4.id}}
+                </div>
+            </div>
             {%endif%}
 
             <h5 class="text-info">Pizzas </h5>

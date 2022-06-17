@@ -1,3 +1,4 @@
+{% include 'navbar.html' %}
 {%load static%}
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@
         <strong>Nome: </strong>{{pizza.nome}}<br>
         <strong>Descrição: </strong>{{pizza.desc}}<br>
         {% for i in pizzaInfo %}
-        <strong>Tamanho: </strong>{{i.tamanho}} | <strong>Preco: </strong>{{i.preco}}<br>  
+        <strong>Tamanho: </strong>{{i.tamanho}} | <strong>Preço: </strong>{{i.preco}}<br>  
         {% endfor %}
     </div>
 

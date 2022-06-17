@@ -78,3 +78,10 @@ Traceback (most recent call last):
     if cliente_id > 0:
 TypeError: '>' not supported between instances of 'NoneType' and 'int'
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:None
+DEBUG:root:Cliente object (1)
+DEBUG:root:None
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:Cliente object (1)
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:Cliente object (1)
