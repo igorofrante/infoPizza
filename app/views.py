@@ -144,13 +144,13 @@ def clienteDestroy(request, id):
 
 # PEDIDO
 def pedidosIndex(request) :
-    pedidos = Pedido.objects.all()
+    pedidos = Pedido.objects.all().order_by('-tempo')
     return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Todos os pedidos'}) 
 def pedidosDeliveryIndex(request) :
-    pedidos = Pedido.objects.filter(cat=1)
+    pedidos = Pedido.objects.filter(cat=1).order_by('-tempo')
     return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Pedidos - Delivery'}) 
 def pedidosMesaIndex(request) :
-    pedidos = Pedido.objects.filter(cat=2)
+    pedidos = Pedido.objects.filter(cat=2).order_by('-tempo')
     return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Pedidos - Mesa'})     
 
 def indexContPedidos(request):
@@ -170,7 +170,7 @@ def indexContPedidos(request):
 def pedidosDeliveryInsert(request) :
     novoPedido = Pedido(cat=1)
     if request.method == "POST":
-        form = PedidoDeliveryForm(request.POST,instance=novoPedido, prefix='form')
+        form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
 
@@ -183,7 +183,7 @@ def pedidosDeliveryInsert(request) :
             except:  
                 pass  
     else:  
-        form = PedidoDeliveryForm(instance=novoPedido,prefix='form')
+        form = PedidoForm(instance=novoPedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
         form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
     return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3,'titulo':'Anotar Pedido - Delivery'})  
@@ -191,7 +191,7 @@ def pedidosDeliveryInsert(request) :
 def pedidosMesaInsert(request) :
     novoPedido = Pedido(cat=2)
     if request.method == "POST":
-        form = PedidoMesaForm(request.POST,instance=novoPedido, prefix='form')
+        form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
         form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
         form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
         form4 = mesaForm(request.POST, prefix='form4')
@@ -207,7 +207,7 @@ def pedidosMesaInsert(request) :
             except:  
                 pass  
     else:  
-        form = PedidoMesaForm(instance=novoPedido,prefix='form')
+        form = PedidoForm(instance=novoPedido,prefix='form')
         form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
         form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
         form4 = mesaForm(instance=novoPedido,prefix='form4')
@@ -216,11 +216,16 @@ def pedidosMesaInsert(request) :
 
 def pedidosUpdate(request, id):
     pedido = Pedido.objects.get(id=id)
-    pdd = pedido
+    cliente_id = Pedido.objects.filter(id=id).values_list('cliente',flat=True)[0]
+    titulo = ""
+    if(pedido.cat == 1):
+        titulo = 'Editar Pedido - Delivery'
+    else:
+        titulo = 'Editar Pedido - Mesa'
     if request.method == "POST":
         form = PedidoForm2(request.POST,instance=pedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,instance=pdd, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,instance=pdd, prefix='form3')
+        form2 = PedidoPizzaFormset(request.POST,instance=pedido, prefix='form2')
+        form3 = PedidoBebidaFormset(request.POST,instance=pedido, prefix='form3')
         if form.is_valid() and form2.is_valid() and form3.is_valid():  
             try:  
                 form.save()
@@ -231,9 +236,13 @@ def pedidosUpdate(request, id):
                 pass  
     else:  
         form = PedidoForm2(instance=pedido,prefix='form')
-        form2 = PedidoPizzaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=1),prefix='form2')
-        form3 = PedidoBebidaFormset(instance=pdd,queryset=ItensPedido.objects.all().filter(pedido=id).filter(produto__cat=2),prefix='form3')
-    return render(request,'pedido/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido,'titulo':'Editar Pedido'})
+        form2 = PedidoPizzaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=1),prefix='form2')
+        form3 = PedidoBebidaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=2),prefix='form3')
+        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
+        logging.debug(pedido.cliente)
+        cliente = Cliente.objects.get(id=cliente_id)
+        clienteinfo = cliente.nome+" "+cliente.sobrenome+" ("+cliente.cpf+")" 
+    return render(request,'pedido/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido,'clienteinfo':clienteinfo,'titulo':titulo})
         
 def load_tamanhos(request):
     produto_id = request.GET.get('produto')

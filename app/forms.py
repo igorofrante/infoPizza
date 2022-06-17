@@ -1,7 +1,7 @@
 from asyncio.windows_events import NULL
 from dataclasses import field, fields
 from app.models import *  
-from django.forms import ModelChoiceField, inlineformset_factory  
+from django.forms import ChoiceField, ModelChoiceField, inlineformset_factory  
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django import forms  
 from localflavor.br.forms import BRCPFField,BRZipCodeField
@@ -42,7 +42,7 @@ class PedidoChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.nome+" "+obj.sobrenome+" ("+obj.cpf+")" 
 
-class PedidoDeliveryForm(forms.ModelForm):
+class PedidoForm(forms.ModelForm):
     obs = forms.CharField(required=False)
     cliente = PedidoChoiceField(
         widget=forms.Select,
@@ -50,32 +50,48 @@ class PedidoDeliveryForm(forms.ModelForm):
         to_field_name='id',
         empty_label="Nenhum"
     )
-    metodoPag = forms.CharField()
+    metodoPag = forms.ChoiceField(
+        choices = BLANK_CHOICE_DASH + [('Dinheiro','Dinheiro'),('Pix','Pix'),('Cartão de Crédito/Debito','Cartão de Crédito/Debito'),('PicPay','PicPay'),('Mercado Pago', 'Mercado Pago'),('Ame Digital', 'Ame Digital')])
     class Meta:
         model = Pedido
         fields = '__all__'
         exclude = ('cat','status','tempo')
 
-class PedidoMesaForm(forms.ModelForm):
-    obs = forms.CharField(required=False)
-    cliente = PedidoChoiceField(
-        widget=forms.Select,
-        queryset = Cliente.objects.all(),
-        to_field_name='id',
-        empty_label="Nenhum",
-        required=False
-    )
-    class Meta:
-        model = Pedido
-        fields = '__all__'
-        exclude = ('cat','status','tempo','metodoPag')
+    def __init__(self, *args, **kwargs):
+        super(PedidoForm, self).__init__(*args, **kwargs)
+        if self.instance.cat == 2:
+            self.fields['cliente'].required = False
+
 
 class PedidoForm2(forms.ModelForm):
+    status = ChoiceField()
     obs = forms.CharField(required=False)
+    metodoPag = forms.ChoiceField(
+        choices = BLANK_CHOICE_DASH + [('Dinheiro','Dinheiro'),('Pix','Pix'),('Cartão de Crédito/Debito','Cartão de Crédito/Debito'),('PicPay','PicPay'),('Mercado Pago', 'Mercado Pago'),('Ame Digital', 'Ame Digital')])
     class Meta:
         model = Pedido
-        exclude = ('cat','cliente','tempo','metodoPag')
-
+        exclude = ('cat','cliente','tempo')
+    def __init__(self, *args, **kwargs):
+        super(PedidoForm2, self).__init__(*args, **kwargs)
+        if self.instance.cat == 1:
+            self.fields['status'].choices =  BLANK_CHOICE_DASH + [
+                ('Preparando','Preparando'),
+                ('Cancelado pela Cozinha','Cancelado pela Cozinha'),
+                ('Cancelado pelo Cliente','Cancelado pelo Cliente'),
+                ('Pedido Pronto','Pedido Pronto'),
+                ('Pronto para entrega','Pronto para entrega'),
+                ('Saiu para entrega','Saiu para entrega'),
+                ('Entregue','Entregue'),
+                ('Finalizado','Finalizado')]
+        else:
+            self.fields['status'].choices =  BLANK_CHOICE_DASH + [
+                ('Preparando','Preparando'),
+                ('Cancelado Pela Cozinha','Cancelado Pela Cozinha'),
+                ('Cancelado Pelo Cliente','Cancelado Pelo Cliente'),
+                ('Pedido Pronto', 'Pedido Pronto'),
+                ('Pronto para servir','Pronto para servir'),
+                ('Finalizado','Finalizado')]
+            self.fields['metodoPag'].required = False
 class ItensChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.nome

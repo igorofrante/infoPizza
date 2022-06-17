@@ -33,6 +33,12 @@
                     {{ form.cliente }}
                 </div>
             </div>
+            {%else%}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Cliente: {{ clienteinfo }}</label>
+                <div class="col-sm-4">
+                </div>
+            </div>
             {%endif%}
 
             {% if titulo == 'Anotar Pedido - Mesa' %}        
@@ -72,12 +78,10 @@
                     {{ form.status }}
                 </div>
                 {% endif %}
-                {% if titulo == 'Anotar Pedido - Delivery' %}
                 <label class="col-sm-2 col-form-label">Método de Pagamento</label>
                 <div class="col-sm-4">
                     {{ form.metodoPag }}
                 </div>
-                {% endif %}
                 <label class="col-sm-2 col-form-label">Observacoes</label>
                 <div class="col-sm-4">
                     {{ form.obs }}
