@@ -17,6 +17,8 @@ def index(request):
     faturadohoje=ItensPedido.objects.filter(pedido__status="Finalizado").aggregate(Sum('preco'))['preco__sum']
     if faturadohoje == None:
         faturadohoje="00,00"
+    else:
+        faturadohoje = str(faturadohoje).replace(".",",")
     clientesnovoshoje = Cliente.objects.all().count()
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje})
 

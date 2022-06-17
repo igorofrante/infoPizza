@@ -61,6 +61,7 @@ class PedidoForm(forms.ModelForm):
         super(PedidoForm, self).__init__(*args, **kwargs)
         if self.instance.cat == 2:
             self.fields['cliente'].required = False
+            self.fields['metodoPag'].required = False
 
 
 class PedidoForm2(forms.ModelForm):
