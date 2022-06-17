@@ -51,3 +51,30 @@ Traceback (most recent call last):
     cliente = Cliente.objects.get(id=pdd.cliente)
 AttributeError: 'QuerySet' object has no attribute 'cliente'
 INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:Cliente object (1)
+DEBUG:root:None
+ERROR:django.request:Internal Server Error: /pedido/form/6
+Traceback (most recent call last):
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py", line 243, in pedidosUpdate
+    cliente = Cliente.objects.get(id=cliente_id)
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+app.models.Cliente.DoesNotExist: Cliente matching query does not exist.
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.
+DEBUG:root:None
+ERROR:django.request:Internal Server Error: /pedido/form/6
+Traceback (most recent call last):
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\igoro\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py", line 243, in pedidosUpdate
+    if cliente_id > 0:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+INFO:django.utils.autoreload:C:\Users\igoro\OneDrive\Documentos\GitHub\infoPizza\app\views.py changed, reloading.

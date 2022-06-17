@@ -240,8 +240,11 @@ def pedidosUpdate(request, id):
         form3 = PedidoBebidaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=2),prefix='form3')
         logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
         logging.debug(pedido.cliente)
-        cliente = Cliente.objects.get(id=cliente_id)
-        clienteinfo = cliente.nome+" "+cliente.sobrenome+" ("+cliente.cpf+")" 
+        if cliente_id != None:
+            cliente = Cliente.objects.get(id=cliente_id)
+            clienteinfo = cliente.nome+" "+cliente.sobrenome+" ("+cliente.cpf+")" 
+        else:
+            clienteinfo = "Não informado"
     return render(request,'pedido/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido,'clienteinfo':clienteinfo,'titulo':titulo})
         
 def load_tamanhos(request):
