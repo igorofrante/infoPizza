@@ -38,7 +38,7 @@ class Cliente(models.Model):
 
 class Pedido(models.Model):
     cat = models.IntegerField()
-    status = models.CharField(default="Inicio",max_length=100)
+    status = models.CharField(default="Anotado",max_length=100)
     tempo = models.DateTimeField(auto_now_add=True)
     metodoPag = models.CharField(null=True,max_length=50)
     obs = models.CharField(max_length=500, null=True)

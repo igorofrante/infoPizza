@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Cozinha</title>
+    {% include 'head.html' %}
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="col-8 m-auto pt-4 pb-2 text-center">
+        <div class="col8 text-center mb-4">
+            <h5>
+                <strong>Número do Pedido: </strong>{{ pedido.id }} <br>
+            </h5>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm">
+                <!-- pizza -->
+                <h5>Pizzas </h5>
+                {% for pizza in pizzas %}
+                <strong>Nome: </strong>{{pizza.produto.nome}} <strong>Tamanho: </strong>{{pizza.tamanho.tamanho}} | <strong>Preço: </strong>{{pizza.preco}}<br>  
+                {% endfor %}
+            </div>
+            <div class="col-sm">
+                 <!-- bebida -->
+                 <h5 >Bebidas </h5>
+                {% for bebida in bebidas %}
+                <strong>Nome: </strong>{{bebida.produto.nome}}
+                <strong>Tamanho: </strong>{{bebida.tamanho.tamanho}} | <strong>Preço: </strong>{{bebida.preco}}<br>  
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+
+        <!-- status -->
+        <div class="col8 text-center mb-3">
+            <strong>Status do Pedido</strong>: {{ pedido.status }}   
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <a class="btn btn-warning"  href="/cozinha/{{pedido.id}}/1" role="button">Preparando...</a>
+        <a class="btn btn-success" href="/cozinha/{{pedido.id}}/2" role="button">Pedido Pronto</a>
+        <a class="btn btn-danger" href="/cozinha/{{pedido.id}}/3" role="button">Cancelado pela cozinha</a>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -51,5 +51,8 @@ urlpatterns = [
     path('mesa/insert/', views.mesaInsert),
     path('mesa/clean/<int:id>', views.mesaClean),
     path('mesa/delete/<int:id>', views.mesaDestroy),
+    path('cozinha/', views.cozinhaIndex),
+    path('cozinha/<int:id>', views.cozinhaView),
+    path('cozinha/<int:id>/<int:status>',views.cozinhaUpdate)
 ]
     

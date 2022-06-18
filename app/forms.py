@@ -63,7 +63,6 @@ class PedidoForm(forms.ModelForm):
             self.fields['cliente'].required = False
             self.fields['metodoPag'].required = False
 
-
 class PedidoForm2(forms.ModelForm):
     status = ChoiceField()
     obs = forms.CharField(required=False)
@@ -75,24 +74,25 @@ class PedidoForm2(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PedidoForm2, self).__init__(*args, **kwargs)
         if self.instance.cat == 1:
-            self.fields['status'].choices =  BLANK_CHOICE_DASH + [
+            self.fields['status'].choices = [
+                ('Anotado','Anotado')
                 ('Preparando','Preparando'),
-                ('Cancelado pela Cozinha','Cancelado pela Cozinha'),
-                ('Cancelado pelo Cliente','Cancelado pelo Cliente'),
+                ('Cancelado','Cancelado'),
                 ('Pedido Pronto','Pedido Pronto'),
                 ('Pronto para entrega','Pronto para entrega'),
                 ('Saiu para entrega','Saiu para entrega'),
                 ('Entregue','Entregue'),
                 ('Finalizado','Finalizado')]
         else:
-            self.fields['status'].choices =  BLANK_CHOICE_DASH + [
+            self.fields['status'].choices = [
+                ('Anotado','Anotado')
                 ('Preparando','Preparando'),
-                ('Cancelado Pela Cozinha','Cancelado Pela Cozinha'),
-                ('Cancelado Pelo Cliente','Cancelado Pelo Cliente'),
+                ('Cancelado','Cancelado'),
                 ('Pedido Pronto', 'Pedido Pronto'),
                 ('Pronto para servir','Pronto para servir'),
                 ('Finalizado','Finalizado')]
             self.fields['metodoPag'].required = False
+            
 class ItensChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.nome

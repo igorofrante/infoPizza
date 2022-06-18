@@ -305,3 +305,33 @@ def mesaDestroy(request,id):
     mesa.delete()
     return redirect('/mesa/')
 
+#COZINHA
+
+def cozinhaIndex(request):
+    pedidos = Pedido.objects.filter(status__in=['Anotado', 'Preparando','Pedido Pronto'])
+    return render(request, 'cozinha/index.html', {'pedidos': pedidos})
+
+def cozinhaView(request, id):
+    pedido = Pedido.objects.get(id=id)
+    itensPizza = ItensPedido.objects.filter(pedido=pedido.id).filter(produto__cat=1)
+    itensBebida = ItensPedido.objects.filter(pedido=pedido.id).filter(produto__cat=2)
+
+    dic = {'pedido':pedido, 'pizzas':itensPizza, 'bebidas':itensBebida }
+
+    return render(request,'cozinha/view.html', dic)
+
+def cozinhaUpdate(request, id, status):
+    pedido = Pedido.objects.get(id=id)
+    if status == 1:
+        pedido.status = 'Preparando'
+    elif status == 2:
+        pedido.status = 'Pedido Pronto'
+    else:
+        pedido.status = 'Cancelado'
+    
+    pedido.save()
+
+    return redirect('/cozinha/')
+
+
+
