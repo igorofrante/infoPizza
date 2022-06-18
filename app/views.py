@@ -175,36 +175,36 @@ def pedidosDeliveryInsert(request) :
     novoPedido = Pedido(cat=1)
     if request.method == "POST":
         form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
+        formp = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='formp')
+        formb = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='formb')
 
-        if form.is_valid() and form2.is_valid() and form3.is_valid():  
+        if form.is_valid() and formb.is_valid() and formp.is_valid():  
             try:  
                 form.save()
-                form2.save()
-                form3.save()
+                formb.save()
+                formp.save()
                 return redirect('/pedido/delivery')  
             except:  
                 pass  
     else:  
         form = PedidoForm(instance=novoPedido,prefix='form')
-        form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
-        form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
-    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3,'titulo':'Anotar Pedido - Delivery'})  
+        formp = PedidoPizzaFormset(instance=novoPedido,prefix='formp')
+        formb = PedidoBebidaFormset(instance=novoPedido,prefix='formb')
+    return render(request,'pedido/form.html', {'form':form, 'formp':formp, 'formb':formb, 'titulo':'Anotar Pedido - Delivery'})  
 
 def pedidosMesaInsert(request) :
     novoPedido = Pedido(cat=2)
     if request.method == "POST":
         form = PedidoForm(request.POST,instance=novoPedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='form3')
-        form4 = mesaForm(request.POST, prefix='form4')
-        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():  
+        formp = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='formp')
+        formb = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='formb')
+        formm = mesaForm(request.POST, prefix='formm')
+        if form.is_valid() and formp.is_valid() and formb.is_valid() and formm.is_valid():  
             try:  
                 form.save()
-                form2.save()
-                form3.save()
-                mesa = Mesa.objects.get(id=request.POST['form4-id'])
+                formb.save()
+                formp.save()
+                mesa = Mesa.objects.get(id=request.POST['formm-id'])
                 mesa.pedido = form.instance.id    
                 mesa.save()        
                 return redirect('/pedido/mesa')  
@@ -212,10 +212,10 @@ def pedidosMesaInsert(request) :
                 pass  
     else:  
         form = PedidoForm(instance=novoPedido,prefix='form')
-        form2 = PedidoPizzaFormset(instance=novoPedido,prefix='form2')
-        form3 = PedidoBebidaFormset(instance=novoPedido,prefix='form3')
-        form4 = mesaForm(instance=novoPedido,prefix='form4')
-    return render(request,'pedido/form.html', {'form':form, 'form2':form2, 'form3':form3, 'form4':form4, 'titulo':'Anotar Pedido - Mesa'})  
+        formp = PedidoPizzaFormset(instance=novoPedido,prefix='formp')
+        formb = PedidoBebidaFormset(instance=novoPedido,prefix='formb')
+        formm = mesaForm(instance=novoPedido,prefix='formm')
+    return render(request,'pedido/form.html', {'form':form, 'formp':formp, 'formb':formb, 'formm':formm, 'titulo':'Anotar Pedido - Mesa'})  
 
 
 def pedidosUpdate(request, id):
@@ -228,33 +228,36 @@ def pedidosUpdate(request, id):
         titulo = 'Editar Pedido - Mesa'
     if request.method == "POST":
         form = PedidoForm2(request.POST,instance=pedido, prefix='form')
-        form2 = PedidoPizzaFormset(request.POST,instance=pedido, prefix='form2')
-        form3 = PedidoBebidaFormset(request.POST,instance=pedido, prefix='form3')
-        if form.is_valid() and form2.is_valid() and form3.is_valid():  
+        formp = PedidoPizzaFormset(request.POST,instance=pedido, prefix='formp')
+        formb = PedidoBebidaFormset(request.POST,instance=pedido, prefix='formb')
+        if form.is_valid() and formb.is_valid() and formp.is_valid():  
             try:  
                 form.save()
-                form2.save()
-                form3.save()
+                formb.save()
+                formp.save()
                 return redirect('/pedido')  
             except:  
                 pass  
     else:  
         form = PedidoForm2(instance=pedido,prefix='form')
-        form2 = PedidoPizzaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=1),prefix='form2')
-        form3 = PedidoBebidaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=2),prefix='form3')
-        logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-        logging.debug(pedido.cliente)
+        formp = PedidoPizzaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=1),prefix='formp')
+        formb = PedidoBebidaFormset(instance=pedido,queryset=ItensPedido.objects.filter(pedido=id).filter(produto__cat=2),prefix='formb')
         if cliente_id != None:
             cliente = Cliente.objects.get(id=cliente_id)
             clienteinfo = cliente.nome+" "+cliente.sobrenome+" ("+cliente.cpf+")" 
         else:
             clienteinfo = "Não informado"
-    return render(request,'pedido/form.html',{'form':form, 'form2':form2, 'form3':form3,'pedido':pedido,'clienteinfo':clienteinfo,'titulo':titulo})
+    return render(request,'pedido/form.html',{'form':form, 'formp':formp, 'formb':formb,'pedido':pedido,'clienteinfo':clienteinfo,'titulo':titulo})
         
 def load_tamanhos(request):
     produto_id = request.GET.get('produto')
     tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
     return render(request, 'pedido/ajax/tamanhos.html', {'tamanhos': tamanhos})
+
+def load_tamanhos2(request):
+    produto_id = request.GET.get('produto')
+    tamanhos = ProdutoInfo.objects.filter(produto=produto_id)
+    return render(request, 'pedido/ajax/tamanhos2.html', {'tamanhos': tamanhos})
 
 def load_tamanho(request):
     itensPedido_id = request.GET.get('idx')

@@ -40,33 +40,43 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Mesa</label>
                 <div class="col-sm-4">        
-                {{form4.id}}
+                {{formm.id}}
                 </div>
             </div>
             {%endif%}
 
             <h5 class="text-info">Pizzas </h5>
-            {{ form2.management_form }}
-            {% for formx in form2 %}
+            {{ formp.management_form }}
+            <div class="pizzas">
+            {% for formx in formp %}
+            <div id="pizza-{{ forloop.counter0 }}">
             {% if pedido %} {{ formx.id|default:pedido.id }} {% endif %}
             {{ formx.produto.label }} {{ formx.produto }}
             {{ formx.tamanho.label }} {{ formx.tamanho }}
             {{ formx.preco.label }} {{ formx.preco }}
             {{ formx.DELETE.label }} {{ formx.DELETE }}
-            <br>
+            </div>
             {% endfor %}
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="addPizza">+</button>
+            
             <br><br>
 
             <h5 class="text-info">Bebidas </h5>
-            {{ form3.management_form }}
-            {% for formx in form3 %}
+            {{ formb.management_form }}
+            <div class ="bebidas">
+            {% for formx in formb %}
+            <div id="bebida-{{ forloop.counter0 }}">
             {% if pedido %} {{ formx.id|default:pedido.id }} {% endif %}
             {{ formx.produto.label }} {{ formx.produto }}
             {{ formx.tamanho.label }} {{ formx.tamanho }}
             {{ formx.preco.label }} {{ formx.preco }}
             {{ formx.DELETE.label }} {{ formx.DELETE }}
-            <br>
+            </div>
             {% endfor %}
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="addBebida">+</button>
+            
             <br>
             <br>
 
@@ -107,51 +117,17 @@
                 currentDate = Date.now();
             } while (currentDate - date < milliseconds);
         }
-        for (let id = 2; id < 4; id++) {
-            for (let index = 0; index < $('#id_form' + id + '-TOTAL_FORMS').val(); index++) {
-                $(function () {
-                    var url = '/pedido/ajax/tamanhos'
-                    var produtoID = $('#id_form' + id + '-' + index + '-produto').val();
 
-                    if (produtoID != '') {
-                        $.ajax({
-                            url: url,
-                            data: {
-                                'produto': produtoID,
-                            },
-                            success: function (data) {
-                                $('#id_form' + id + '-' + index + '-tamanho').html(data);
-                            }
-
-                        });
-                        sleep(100);
-                        var url = '/pedido/ajax/tamanho'
-                        var idx = $('#id_form' + id + '-' + index + '-id').val();
-                        $.ajax({
-                            url: url,
-                            data: {
-                                'idx': idx
-                            },
-                            success: function (data) {
-                                $('#id_form' + id + '-' + index + '-tamanho option[value=' + data + ']').attr("selected", "selected");
-                            }
-                        });
-
-                    }
-                });
-
-            }
-        }
-
-
-        for (let id = 2; id < 4; id++) {
-            for (let index = 0; index < $('#id_form' + id + '-TOTAL_FORMS').val(); index++) {
-                $('#id_form' + id + '-' + index + '-produto').change(function () {
+        function ajaxe(){
+            ls = ['p','b']
+            for (let id = 0; id < 2; id++) {
+            for (let index = 0; index < $('#id_form' + ls[id] + '-TOTAL_FORMS').val(); index++) {
+                $('#id_form' + ls[id] + '-' + index + '-produto').change(function () {
                     var url = '/pedido/ajax/tamanhos'
                     var produtoID = $(this).val();
 
-                    $('#id_form' + id + '-' + index + '-tamanho').val('');
-                    $('#id_form' + id + '-' + index + '-preco').val('');
+                    $('#id_form' + ls[id] + '-' + index + '-tamanho').val('');
+                    $('#id_form' + ls[id] + '-' + index + '-preco').val('');
 
                     $.ajax({
                         url: url,
@@ -159,13 +135,13 @@
                             'produto': produtoID
                         },
                         success: function (data) {
-                            $('#id_form' + id + '-' + index + '-tamanho').html(data);
+                            $('#id_form' + ls[id] + '-' + index + '-tamanho').html(data);
                         }
                     });
 
                 });
 
-                $('#id_form' + id + '-' + index + '-tamanho').change(function () {
+                $('#id_form' + ls[id] + '-' + index + '-tamanho').change(function () {
                     var url = '/pedido/ajax/preco'
                     var tamanhoID = $(this).val();
 
@@ -175,18 +151,91 @@
                             'tamanho': tamanhoID
                         },
                         success: function (data) {
-                            $('#id_form' + id + '-' + index + '-preco').val(data);
+                            $('#id_form' + ls[id] + '-' + index + '-preco').val(data);
                         }
                     });
                 });
             }
         }
+        }
+        function ajaxe2(params) {
+            ls = ['p','b']
+            for (let id = 0; id < 2; id++) {
+            for (let index = 0; index < $('#id_form' + ls[id] + '-TOTAL_FORMS').val(); index++) {
+                $(function () {
+                    var url = '/pedido/ajax/tamanhos2'
+                    var produtoID = $('#id_form' + ls[id] + '-' + index + '-produto').val();
 
+                    if (produtoID != '') {
+                        $.ajax({
+                            url: url,
+                            data: {
+                                'produto': produtoID,
+                            },
+                            success: function (data) {
+                                $('#id_form' + ls[id] + '-' + index + '-tamanho').html(data);
+                            }
 
+                        });
+                        sleep(100);
+                        var url = '/pedido/ajax/tamanho'
+                        var idx = $('#id_form' + ls[id] + '-' + index + '-id').val();
+                        $.ajax({
+                            url: url,
+                            data: {
+                                'idx': idx
+                            },
+                            success: function (data) {
+                                $('#id_form' + ls[id] + '-' + index + '-tamanho option[value=' + data + ']').attr("selected", "selected");
+                            }
+                        });
 
-        // $('#botao').click(function () {
-        //     $('.post-form').clone().appendTo('.col8')
-        // });
+                    }
+                });
+
+            }
+            }
+        }
+    ajaxe();
+    ajaxe2();
+
+    $('#addPizza').click(function(ev) {
+    ev.preventDefault();
+    var count = $('.pizzas').children().length;
+    var tmplMarkup = $('#pizza-'+(count-1)).html();
+    var compiledTmpl = tmplMarkup.replaceAll(count-1, count);
+    var dyv = '<div id=pizza-'+count+'>subs</div>';
+    var dyv = dyv.replace('subs',compiledTmpl);
+    $('.pizzas').append(dyv);
+
+    // update form count
+    $('#id_formp-TOTAL_FORMS').attr('value', count + 1);
+
+    // some animate to scroll to view our new form
+    $('html, body').animate({
+      scrollTop: $("#addPizza").position().top - 200
+    }, 800);
+    ajaxe();
+  });
+
+  $('#addBebida').click(function(ev) {
+    ev.preventDefault();
+    var count = $('.bebidas').children().length;
+    var tmplMarkup = $('#bebida-'+(count-1)).html();
+    var compiledTmpl = tmplMarkup.replaceAll(count-1, count);
+    var dyv = '<div id=bebida-'+count+'>subs</div>';
+    var dyv = dyv.replace('subs',compiledTmpl);
+    $('.bebidas').append(dyv);
+
+    // update form count
+    $('#id_formb-TOTAL_FORMS').attr('value', count + 1);
+
+    // some animate to scroll to view our new form
+    $('html, body').animate({
+      scrollTop: $("#addPizza").position().top - 200
+    }, 800);
+    ajaxe();
+  });
 
     </script>
 

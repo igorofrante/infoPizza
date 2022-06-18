@@ -34,7 +34,7 @@ class BebidaForm(forms.ModelForm):
         fields = ('tamanho','preco')
 
 
-PizzaFormset = inlineformset_factory(Produto, ProdutoInfo, form=PizzaForm,  extra=4, max_num=4, can_delete=True)
+PizzaFormset = inlineformset_factory(Produto, ProdutoInfo, form=PizzaForm,  extra=4, max_num=4,  can_delete=True)
 BebidaFormset = inlineformset_factory(Produto ,ProdutoInfo, form=BebidaForm,  extra=5, max_num=5, can_delete=True)
 
 # PEDIDO
@@ -146,8 +146,8 @@ class ItensPedidoForm2(forms.ModelForm):
         model = ItensPedido
         fields = '__all__'
 
-PedidoPizzaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedidoForm, extra=4, max_num=4, can_delete=True)
-PedidoBebidaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedidoForm2, extra=4, max_num=4, can_delete=True)
+PedidoPizzaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedidoForm, extra=1, max_num=20, can_delete=True)
+PedidoBebidaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedidoForm2, extra=1, max_num=20, can_delete=True)
 
 # CLIENTE
 
@@ -181,8 +181,3 @@ class mesaForm(forms.ModelForm):
         model = Mesa
         #fields = '__all__'
         exclude = ['pedido']
-
-    # def __init__(self, *args, **kwargs):
-    #      super(mesaForm, self).__init__(*args, **kwargs)
-    #      if self.data != {}:
-    #          self.fields['pedido'] = self.instance
