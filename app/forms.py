@@ -75,7 +75,7 @@ class PedidoForm2(forms.ModelForm):
         super(PedidoForm2, self).__init__(*args, **kwargs)
         if self.instance.cat == 1:
             self.fields['status'].choices = [
-                ('Anotado','Anotado')
+                ('Anotado','Anotado'),
                 ('Preparando','Preparando'),
                 ('Cancelado','Cancelado'),
                 ('Pedido Pronto','Pedido Pronto'),
@@ -85,7 +85,7 @@ class PedidoForm2(forms.ModelForm):
                 ('Finalizado','Finalizado')]
         else:
             self.fields['status'].choices = [
-                ('Anotado','Anotado')
+                ('Anotado','Anotado'),
                 ('Preparando','Preparando'),
                 ('Cancelado','Cancelado'),
                 ('Pedido Pronto', 'Pedido Pronto'),

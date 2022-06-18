@@ -6,14 +6,27 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
+function totalPedido(){
+  ls = ["p", "b"];
+  valor = 0.0;
+  for (let id = 0; id < 2; id++) {
+    for (let index = 0;index < $("#id_form" + ls[id] + "-TOTAL_FORMS").val(); index++) {
+        if ($("#id_form" + ls[id] +"-" + index + "-preco").val() != '' && $("#id_form" + ls[id] +"-" + index + "-DELETE").is(':checked')== false ){
+          console.log($("#id_form" + ls[id] +"-" + index + "-preco").val())
+          valor += parseFloat($("#id_form" + ls[id] + "-"+ index + "-preco").val());
+        }
+    }
+  }
+  $('#totalPedido').val(valor)
+
+
+}
+
 function ajaxe() {
   ls = ["p", "b"];
   for (let id = 0; id < 2; id++) {
-    for (
-      let index = 0;
-      index < $("#id_form" + ls[id] + "-TOTAL_FORMS").val();
-      index++
-    ) {
+    for (let index = 0;index < $("#id_form" + ls[id] + "-TOTAL_FORMS").val(); index++) {
+      $("#id_form" + ls[id] + "-" + index + "-DELETE").change(totalPedido);
       $("#id_form" + ls[id] + "-" + index + "-produto").change(function () {
         var url = "/pedido/ajax/tamanhos";
         var produtoID = $(this).val();
@@ -43,9 +56,11 @@ function ajaxe() {
           },
           success: function (data) {
             $("#id_form" + ls[id] + "-" + index + "-preco").val(data);
+            totalPedido();
           },
         });
       });
+      
     }
   }
 }
@@ -100,6 +115,9 @@ function ajaxe2() {
 $(document).ready(function(){
     ajaxe();
     ajaxe2();
+    totalPedido();
+
+
     $("#addPizza").click(function (ev) {
         ev.preventDefault();
         var count = $(".pizzas").children().length;
