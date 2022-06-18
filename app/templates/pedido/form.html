@@ -6,6 +6,7 @@
 <head>
     <title>Formulário Pedido</title>
     {% include 'head.html' %}
+    <script src="/app/static/js/pedido.js"></script>
 </head>
 
 <body>
@@ -107,138 +108,7 @@
             </div>
         </div>
     </form>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        function sleep(milliseconds) {
-            const date = Date.now();
-            let currentDate = null;
-            do {
-                currentDate = Date.now();
-            } while (currentDate - date < milliseconds);
-        }
-
-        function ajaxe(){
-            ls = ['p','b']
-            for (let id = 0; id < 2; id++) {
-            for (let index = 0; index < $('#id_form' + ls[id] + '-TOTAL_FORMS').val(); index++) {
-                $('#id_form' + ls[id] + '-' + index + '-produto').change(function () {
-                    var url = '/pedido/ajax/tamanhos'
-                    var produtoID = $(this).val();
-
-                    $('#id_form' + ls[id] + '-' + index + '-tamanho').val('');
-                    $('#id_form' + ls[id] + '-' + index + '-preco').val('');
-
-                    $.ajax({
-                        url: url,
-                        data: {
-                            'produto': produtoID
-                        },
-                        success: function (data) {
-                            $('#id_form' + ls[id] + '-' + index + '-tamanho').html(data);
-                        }
-                    });
-
-                });
-
-                $('#id_form' + ls[id] + '-' + index + '-tamanho').change(function () {
-                    var url = '/pedido/ajax/preco'
-                    var tamanhoID = $(this).val();
-
-                    $.ajax({
-                        url: url,
-                        data: {
-                            'tamanho': tamanhoID
-                        },
-                        success: function (data) {
-                            $('#id_form' + ls[id] + '-' + index + '-preco').val(data);
-                        }
-                    });
-                });
-            }
-        }
-        }
-        function ajaxe2(params) {
-            ls = ['p','b']
-            for (let id = 0; id < 2; id++) {
-            for (let index = 0; index < $('#id_form' + ls[id] + '-TOTAL_FORMS').val(); index++) {
-                $(function () {
-                    var url = '/pedido/ajax/tamanhos2'
-                    var produtoID = $('#id_form' + ls[id] + '-' + index + '-produto').val();
-
-                    if (produtoID != '') {
-                        $.ajax({
-                            url: url,
-                            data: {
-                                'produto': produtoID,
-                            },
-                            success: function (data) {
-                                $('#id_form' + ls[id] + '-' + index + '-tamanho').html(data);
-                            }
-
-                        });
-                        sleep(100);
-                        var url = '/pedido/ajax/tamanho'
-                        var idx = $('#id_form' + ls[id] + '-' + index + '-id').val();
-                        $.ajax({
-                            url: url,
-                            data: {
-                                'idx': idx
-                            },
-                            success: function (data) {
-                                $('#id_form' + ls[id] + '-' + index + '-tamanho option[value=' + data + ']').attr("selected", "selected");
-                            }
-                        });
-
-                    }
-                });
-
-            }
-            }
-        }
-    ajaxe();
-    ajaxe2();
-
-    $('#addPizza').click(function(ev) {
-    ev.preventDefault();
-    var count = $('.pizzas').children().length;
-    var tmplMarkup = $('#pizza-'+(count-1)).html();
-    var compiledTmpl = tmplMarkup.replaceAll(count-1, count);
-    var dyv = '<div id=pizza-'+count+'>subs</div>';
-    var dyv = dyv.replace('subs',compiledTmpl);
-    $('.pizzas').append(dyv);
-
-    // update form count
-    $('#id_formp-TOTAL_FORMS').attr('value', count + 1);
-
-    // some animate to scroll to view our new form
-    $('html, body').animate({
-      scrollTop: $("#addPizza").position().top - 200
-    }, 800);
-    ajaxe();
-  });
-
-  $('#addBebida').click(function(ev) {
-    ev.preventDefault();
-    var count = $('.bebidas').children().length;
-    var tmplMarkup = $('#bebida-'+(count-1)).html();
-    var compiledTmpl = tmplMarkup.replaceAll(count-1, count);
-    var dyv = '<div id=bebida-'+count+'>subs</div>';
-    var dyv = dyv.replace('subs',compiledTmpl);
-    $('.bebidas').append(dyv);
-
-    // update form count
-    $('#id_formb-TOTAL_FORMS').attr('value', count + 1);
-
-    // some animate to scroll to view our new form
-    $('html, body').animate({
-      scrollTop: $("#addPizza").position().top - 200
-    }, 800);
-    ajaxe();
-  });
-
-    </script>
-
+    {%include 'footer.html' %}
 </body>
 
 </html>

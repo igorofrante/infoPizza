@@ -6,6 +6,8 @@
 <head>
     <title>Cardapio - Pizza</title>
     {% include 'head.html' %}
+    <script src="{% static 'javascript.js' %}"></script>
+    <script>document.querySelector("body > nav > ul > li:nth-child(2) > a").href = "/cardapio/bebida/"</script>
 </head>
 
 <body>
@@ -46,10 +48,7 @@
     
    
 
-    <script src="{% static 'javascript.js' %}"></script>
-    <script>
-         document.querySelector("body > nav > ul > li:nth-child(2) > a").href = "/cardapio/bebida/"
-    </script>
+    
     
 </body>
 
