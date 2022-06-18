@@ -220,7 +220,7 @@ def pedidosMesaInsert(request) :
 
 def pedidosUpdate(request, id):
     pedido = Pedido.objects.get(id=id)
-    cliente_id = Pedido.objects.filter(id=id).values_list('cliente',flat=True)[0]
+    cliente_id = Pedido.objects.get(id=id).cliente.id
     titulo = ""
     if(pedido.cat == 1):
         titulo = 'Editar Pedido - Delivery'
@@ -261,7 +261,7 @@ def load_tamanhos2(request):
 
 def load_tamanho(request):
     itensPedido_id = request.GET.get('idx')
-    tamanho = ItensPedido.objects.filter(id=itensPedido_id).values_list('tamanho',flat=True)[0]
+    tamanho = ItensPedido.objects.get(id=itensPedido_id).tamanho
     return render(request, 'pedido/ajax/tamanho.html', {'tamanho':tamanho})
 
 def load_preco(request):
