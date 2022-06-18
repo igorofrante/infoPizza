@@ -117,7 +117,7 @@ def clienteIndex(request):
 
 def clienteView(request,id):
      cliente = Cliente.objects.get(id=id)
-     pedidos = Pedido.objects.filter(cliente=id)
+     pedidos = Pedido.objects.filter(cliente=id).order_by('-tempo')
      return render(request, 'cliente/view.html', {'cliente':cliente,'pedidos':pedidos})
 
 def clienteInsert(request):
