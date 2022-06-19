@@ -20,10 +20,12 @@
     </div>
 
     <div class="col8 p-3 text-center">
-        <table class="table table-striped table-bordered table-sm">
+        <table class="table table-striped table-bordered table-sm"
+        data-toggle="table" data-search="true"
+        data-show-multi-sort="true" data-pagination="true">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nome</th>
+                    <th data-field='nome' data-sortable="true">Nome</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -31,7 +33,7 @@
             <tbody>
                 {% for bebida in bebidas %}
                 <tr>
-                    <td>{{ bebida.nome }}</td>
+                    <td data-field='nome'>{{ bebida.nome }}</td>
                     <td> 
                         <a href="/cardapio/bebida/view/{{ bebida.id }}" class="bi bi-card-text"></a>
                         <a href="{% url 'cardapioBebidaUpdate' bebida.id %}" class="bi bi-pencil"></a>

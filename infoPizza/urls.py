@@ -20,6 +20,7 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    ############ CARDAPIO ############
     path('cardapio/pizza/', views.cardapioPizzaIndex),
     path('cardapio/pizza/view/<int:id>', views.cardapioPizzaView),
     path('cardapio/pizza/form/', views.cardapioPizzaInsert, name='cardapioPizzaInsert'),
@@ -30,11 +31,13 @@ urlpatterns = [
     path('cardapio/bebida/form/', views.cardapioBebidaInsert, name='cardapioBebidaInsert'),
     path('cardapio/bebida/form/<int:id>', views.cardapioBebidaUpdate, name='cardapioBebidaUpdate'),
     path('cardapio/bebida/delete/<int:id>', views.cardapioBebidaDestroy),
+    ############ CLIENTE ############
     path('cliente/', views.clienteIndex),
     path('cliente/view/<int:id>', views.clienteView),
     path('cliente/form/', views.clienteInsert),
     path('cliente/form/<int:id>', views.clienteUpdate),
     path('cliente/delete/<int:id>', views.clienteDestroy),
+    ############ PEDIDO ############
     path('pedido/', views.pedidosIndex),
     path('pedido/delivery/', views.pedidosDeliveryIndex),
     path('pedido/mesa/', views.pedidosMesaIndex),
@@ -45,12 +48,16 @@ urlpatterns = [
     path('pedido/ajax/preco', views.load_preco),
     path('pedido/ajax/tamanho', views.load_tamanho, name='ajax_load_tamanhos'),
     path('pedido/form/<int:id>', views.pedidosUpdate),
+    path('pedido/waiter/<int:id>', views.pedidoWaiter),
+    path('pedido/delivery/<int:id>', views.pedidoDelivery),
     path('pedido/cancel/<int:id>', views.pedidoCancel),
     path('pedido/delete/<int:id>', views.pedidoDestroy),
+    ############ MESA ############
     path('mesa/', views.mesaIndex),
     path('mesa/insert/', views.mesaInsert),
     path('mesa/clean/<int:id>', views.mesaClean),
     path('mesa/delete/<int:id>', views.mesaDestroy),
+    ############ COZINHA ############
     path('cozinha/', views.cozinhaIndex),
     path('cozinha/<int:id>', views.cozinhaView),
     path('cozinha/<int:id>/<int:status>',views.cozinhaUpdate)

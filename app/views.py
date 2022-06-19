@@ -1,5 +1,6 @@
 from dataclasses import fields
 from re import M
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.db.models import Sum
 from app.forms import * 
@@ -22,7 +23,8 @@ def index(request):
     clientesnovoshoje = Cliente.objects.all().count()
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje})
 
-# PIZZA
+############ CARDAPIO ############
+############ PIZZA    ############
 def cardapioPizzaIndex(request):
     pizzas = Produto.objects.filter(cat__iexact=1) 
     return render(request,'cardapio/pizza/index.html',{'pizzas':pizzas}) 
@@ -67,7 +69,8 @@ def cardapioPizzaDestroy(request, id):
     pizza.delete()  
     return redirect("/cardapio/pizza")
 
-# BEBIDA
+############ CARDAPIO ############
+############ BEBIDA   ############
 def cardapioBebidaIndex(request) :
     bebidas = Produto.objects.filter(cat__iexact=2)
     return render(request,"cardapio/bebida/index.html", {'bebidas':bebidas}) 
@@ -110,7 +113,7 @@ def cardapioBebidaDestroy(request, id):
     bebida.delete()  
     return redirect("/cardapio/bebida")
 
-#CLIENTE
+########### CLIENTE ############
 def clienteIndex(request):
     clientes = Cliente.objects.all()
     return render(request, 'cliente/index.html', {'clientes':clientes})
@@ -146,7 +149,7 @@ def clienteDestroy(request, id):
     cliente.delete()
     return redirect('/cliente/')
 
-# PEDIDO
+########### PEDIDOS ############
 def pedidosIndex(request) :
     pedidos = Pedido.objects.all().order_by('-tempo')
     return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Todos os pedidos'}) 
@@ -272,19 +275,33 @@ def load_preco(request):
     preco = ProdutoInfo.objects.get(id=tamanho).preco
     return render(request, 'pedido/ajax/preco.html', {'preco': preco})
 
-def pedidoCancel(resquest, id):
+def pedidoWaiter(request, id):
+    pedido = Pedido.objects.get(id=id)
+    if pedido.status == "Pedido Pronto":
+        pedido.status = "Servido"
+        pedido.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def pedidoDelivery(request, id):
+    pedido = Pedido.objects.get(id=id)
+    if pedido.status == "Pedido Pronto":
+        pedido.status = "Saiu para entrega"
+        pedido.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def pedidoCancel(request, id):
     pedido = Pedido.objects.get(id=id)
     pedido.status = "Cancelado"
     pedido.save()
-    return redirect('/pedido/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-def pedidoDestroy(resquest, id):
+def pedidoDestroy(request, id):
     pedido = Pedido.objects.get(id=id)
     pedido.delete()
-    return redirect('/pedido/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-# MESA
+########### MESA ############
 def mesaIndex(request):
     mesas = Mesa.objects.all()
     return render(request, 'mesa/index.html', {'mesas': mesas})
@@ -305,7 +322,7 @@ def mesaDestroy(request,id):
     mesa.delete()
     return redirect('/mesa/')
 
-#COZINHA
+########### COZINHA ############
 
 def cozinhaIndex(request):
     pedidos = Pedido.objects.filter(status__in=['Anotado', 'Preparando','Pedido Pronto'])
@@ -332,6 +349,8 @@ def cozinhaUpdate(request, id, status):
     pedido.save()
 
     return redirect('/cozinha/')
+
+########### CAIXA ############
 
 
 

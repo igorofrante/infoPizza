@@ -79,7 +79,6 @@ class PedidoForm2(forms.ModelForm):
                 ('Preparando','Preparando'),
                 ('Cancelado','Cancelado'),
                 ('Pedido Pronto','Pedido Pronto'),
-                ('Pronto para entrega','Pronto para entrega'),
                 ('Saiu para entrega','Saiu para entrega'),
                 ('Entregue','Entregue'),
                 ('Finalizado','Finalizado')]
@@ -89,7 +88,7 @@ class PedidoForm2(forms.ModelForm):
                 ('Preparando','Preparando'),
                 ('Cancelado','Cancelado'),
                 ('Pedido Pronto', 'Pedido Pronto'),
-                ('Pronto para servir','Pronto para servir'),
+                ('Servido','Servido'),
                 ('Finalizado','Finalizado')]
             self.fields['metodoPag'].required = False
             

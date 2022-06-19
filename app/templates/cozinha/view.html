@@ -22,19 +22,23 @@
                 <!-- pizza -->
                 <h5>Pizzas </h5>
                 {% for pizza in pizzas %}
-                <strong>Nome: </strong>{{pizza.produto.nome}} <strong>Tamanho: </strong>{{pizza.tamanho.tamanho}} | <strong>Preço: </strong>{{pizza.preco}}<br>  
+                <strong>Nome: </strong>{{pizza.produto.nome}} | <strong>Tamanho: </strong>{{pizza.tamanho.tamanho}} | <strong>Preço: </strong>{{pizza.preco}}<br>  
                 {% endfor %}
             </div>
             <div class="col-sm">
                  <!-- bebida -->
                  <h5 >Bebidas </h5>
                 {% for bebida in bebidas %}
-                <strong>Nome: </strong>{{bebida.produto.nome}}
-                <strong>Tamanho: </strong>{{bebida.tamanho.tamanho}} | <strong>Preço: </strong>{{bebida.preco}}<br>  
+                <strong>Nome: </strong>{{bebida.produto.nome}} | <strong>Tamanho: </strong>{{bebida.tamanho.tamanho}} | <strong>Preço: </strong>{{bebida.preco}}<br>  
                 {% endfor %}
             </div>
         </div>
         <hr>
+        {% if pedido.obs != "" %}
+        <div class="col8 text-center mb-3" id="pedido_obs">
+            <strong>Observações</strong>: {{ pedido.obs }}   
+        </div>
+        {%endif%}
 
         <!-- status -->
         <div class="col8 text-center mb-3">
@@ -45,7 +49,7 @@
     <div class="container text-center">
         <a class="btn btn-warning"  href="/cozinha/{{pedido.id}}/1" role="button">Preparando...</a>
         <a class="btn btn-success" href="/cozinha/{{pedido.id}}/2" role="button">Pedido Pronto</a>
-        <a class="btn btn-danger" href="/cozinha/{{pedido.id}}/3" role="button">Cancelado pela cozinha</a>
+        <a class="btn btn-danger" href="/cozinha/{{pedido.id}}/3" role="button">Cancelado</a>
     </div>
 
 </body>
