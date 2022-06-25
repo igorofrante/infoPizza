@@ -58,7 +58,7 @@ def cardapioPizzaUpdate(request, id):
             form2.save()
             return redirect('/cardapio/pizza')  
         else:
-            return print(form2.errors)
+            pass
     else:
         form = ProdutoForm(instance=pizza, prefix='form')
         form2 = PizzaFormset(instance=pizza, prefix='form2')
