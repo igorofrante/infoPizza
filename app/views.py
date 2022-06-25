@@ -15,7 +15,7 @@ import logging
 
 def index(request):
     pedidoshoje = Pedido.objects.all().count() #filter =today
-    faturadohoje=ItensPedido.objects.filter(pedido__status="Finalizado").aggregate(Sum('preco'))['preco__sum']
+    faturadohoje= Pedido.objects.filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
     if faturadohoje == None:
         faturadohoje="00,00"
     else:
@@ -181,7 +181,7 @@ def pedidosDeliveryInsert(request) :
         formp = PedidoPizzaFormset(request.POST, instance=novoPedido, prefix='formp')
         formb = PedidoBebidaFormset(request.POST, instance=novoPedido, prefix='formb')
 
-        if form.is_valid() and formb.is_valid() and formp.is_valid():  
+        if form.is_valid() and formp.is_valid() and formb.is_valid():  
             try:  
                 form.save()
                 formb.save()
@@ -189,6 +189,7 @@ def pedidosDeliveryInsert(request) :
                 return redirect('/pedido/delivery')  
             except:  
                 pass  
+
     else:  
         form = PedidoForm(instance=novoPedido,prefix='form')
         formp = PedidoPizzaFormset(instance=novoPedido,prefix='formp')
@@ -353,4 +354,30 @@ def cozinhaUpdate(request, id, status):
 ########### CAIXA ############
 
 
+def caixaIndex(request):
+    pedidos = Pedido.objects.filter(status__in=['Saiu para entrega', 'Servido'])
+    return render(request, 'caixa/index.html', {'pedidos': pedidos})
 
+
+def caixaView(request, id):
+    pedido = Pedido.objects.get(id=id)
+    itensPizza = ItensPedido.objects.filter(pedido=pedido.id).filter(produto__cat=1)
+    itensBebida = ItensPedido.objects.filter(pedido=pedido.id).filter(produto__cat=2)
+
+    if request.method == "POST":
+        form = caixaForm(request.POST,instance=pedido, prefix='form')
+        if form.is_valid() :   
+            form.save()
+            pedido.status = 'Finalizado'
+            pedido.save()
+            if pedido.cat == 2:
+                mesa = Mesa.objects.get(pedido=pedido.id)
+                mesa.pedido = None
+                mesa.save()
+            return redirect('/caixa')  
+    else:  
+        form = caixaForm(instance=pedido, prefix='form')
+
+    dic = {'form':form, 'pedido':pedido, 'pizzas':itensPizza, 'bebidas':itensBebida }
+
+    return render(request,'caixa/view.html', dic)

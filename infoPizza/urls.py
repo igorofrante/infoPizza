@@ -60,6 +60,10 @@ urlpatterns = [
     ############ COZINHA ############
     path('cozinha/', views.cozinhaIndex),
     path('cozinha/<int:id>', views.cozinhaView),
-    path('cozinha/<int:id>/<int:status>',views.cozinhaUpdate)
+    path('cozinha/<int:id>/<int:status>',views.cozinhaUpdate),
+    ############ CAIXA ############
+    path('caixa/', views.caixaIndex),
+    path('caixa/<int:id>', views.caixaView),
+    
 ]
     

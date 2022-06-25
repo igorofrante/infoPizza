@@ -51,14 +51,14 @@ class PedidoForm(forms.ModelForm):
         empty_label="Nenhum"
     )
     metodoPag = forms.ChoiceField(
-        choices = BLANK_CHOICE_DASH + [('Dinheiro','Dinheiro'),('Pix','Pix'),('Cartão de Crédito/Debito','Cartão de Crédito/Debito'),('PicPay','PicPay'),('Mercado Pago', 'Mercado Pago'),('Ame Digital', 'Ame Digital')])
+        choices = BLANK_CHOICE_DASH + [('Dinheiro','Dinheiro'),('Pix','Pix'),('Cartão de Crédito/Debito','Cartão de Crédito/Debito'),('PicPay','PicPay'),('Mercado Pago', 'Mercado Pago'),('Ame Digital', 'Ame Digital')]) 
     class Meta:
         model = Pedido
-        fields = '__all__'
         exclude = ('cat','status','tempo')
 
     def __init__(self, *args, **kwargs):
         super(PedidoForm, self).__init__(*args, **kwargs)
+        self.fields['total'].widget.attrs['readonly'] = True
         if self.instance.cat == 2:
             self.fields['cliente'].required = False
             self.fields['metodoPag'].required = False
@@ -73,6 +73,7 @@ class PedidoForm2(forms.ModelForm):
         exclude = ('cat','cliente','tempo')
     def __init__(self, *args, **kwargs):
         super(PedidoForm2, self).__init__(*args, **kwargs)
+        self.fields['total'].widget.attrs['readonly'] = True
         if self.instance.cat == 1:
             self.fields['status'].choices = [
                 ('Anotado','Anotado'),
@@ -80,7 +81,6 @@ class PedidoForm2(forms.ModelForm):
                 ('Cancelado','Cancelado'),
                 ('Pedido Pronto','Pedido Pronto'),
                 ('Saiu para entrega','Saiu para entrega'),
-                ('Entregue','Entregue'),
                 ('Finalizado','Finalizado')]
         else:
             self.fields['status'].choices = [
@@ -115,8 +115,7 @@ class ItensPedidoForm(forms.ModelForm):
         self.fields['preco'].widget.attrs['readonly'] = True
         if self.data != {}:
             self.fields['tamanho'].queryset = ProdutoInfo.objects.all()
-
-                 
+    
     class Meta:
         model = ItensPedido
         fields = '__all__'
@@ -165,6 +164,8 @@ class clienteForm(forms.ModelForm):
         model = Cliente
         exclude = ['cadastro']
 
+# MESA
+
 class MesaChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.id
@@ -180,3 +181,23 @@ class mesaForm(forms.ModelForm):
         model = Mesa
         #fields = '__all__'
         exclude = ['pedido']
+
+
+# CAIXA
+
+class caixaForm(forms.ModelForm):
+    obs = forms.CharField(required=False)
+    metodoPag = forms.ChoiceField(
+        choices = BLANK_CHOICE_DASH + [('Dinheiro','Dinheiro'),('Pix','Pix'),('Cartão de Crédito/Debito','Cartão de Crédito/Debito'),('PicPay','PicPay'),('Mercado Pago', 'Mercado Pago'),('Ame Digital', 'Ame Digital')])
+    
+    class Meta:
+        model = Pedido
+        fields = ('obs', 'metodoPag', 'total')
+
+    # def __init__(self, *args, **kwargs):
+    #     super(PedidoForm, self).__init__(*args, **kwargs)
+    #     if self.instance.cat == 2:
+    #         self.fields['cliente'].required = False
+    #         self.fields['metodoPag'].required = False
+
+

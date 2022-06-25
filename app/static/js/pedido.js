@@ -12,14 +12,11 @@ function totalPedido(){
   for (let id = 0; id < 2; id++) {
     for (let index = 0;index < $("#id_form" + ls[id] + "-TOTAL_FORMS").val(); index++) {
         if ($("#id_form" + ls[id] +"-" + index + "-preco").val() != '' && $("#id_form" + ls[id] +"-" + index + "-DELETE").is(':checked')== false ){
-          console.log($("#id_form" + ls[id] +"-" + index + "-preco").val())
           valor += parseFloat($("#id_form" + ls[id] + "-"+ index + "-preco").val());
         }
     }
   }
-  $('#totalPedido').val(valor)
-
-
+  $('#id_form-total').val(valor)
 }
 
 function ajaxe() {
