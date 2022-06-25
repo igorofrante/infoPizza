@@ -1,5 +1,7 @@
 from asyncio.windows_events import NULL
+from cProfile import label
 from dataclasses import field, fields
+from tkinter import Label
 from app.models import *  
 from django.forms import ChoiceField, ModelChoiceField, inlineformset_factory  
 from django.db.models.fields import BLANK_CHOICE_DASH
@@ -150,7 +152,7 @@ PedidoBebidaFormset = inlineformset_factory(Pedido, ItensPedido, form=ItensPedid
 # CLIENTE
 
 class clienteForm(forms.ModelForm):
-    cpf = BRCPFField()
+    cpf = BRCPFField(label='CPF')
     dtnasc = forms.DateField(
         widget=forms.SelectDateWidget(years=range(1922, 2022)), 
         label='Data de Nascimento',
@@ -159,7 +161,7 @@ class clienteForm(forms.ModelForm):
     telefone = PhoneNumberField(
         widget=PhoneNumberPrefixWidget(initial='BR')
         )
-    cep = BRZipCodeField(max_length=9) 
+    cep = BRZipCodeField(label='CEP') 
     class Meta:
         model = Cliente
         exclude = ['cadastro']
@@ -193,11 +195,3 @@ class caixaForm(forms.ModelForm):
     class Meta:
         model = Pedido
         fields = ('obs', 'metodoPag', 'total')
-
-    # def __init__(self, *args, **kwargs):
-    #     super(PedidoForm, self).__init__(*args, **kwargs)
-    #     if self.instance.cat == 2:
-    #         self.fields['cliente'].required = False
-    #         self.fields['metodoPag'].required = False
-
-

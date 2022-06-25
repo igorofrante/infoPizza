@@ -2,6 +2,14 @@ body {
     background-color: #ebeff5;
 }
 
+.errorlist li{
+    background-color: rgb(252, 84, 84);
+    width: fit-content;
+    height: fit-content;
+    padding: 3px;
+
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -74,10 +82,3 @@ select#id_telefone_0 {
     width: 100px;
 }
 
-/* #pedido_obs { 
-    border:1px solid black;
-}  */
-
-/* .card bg-primary mb-3{
-    
-} */

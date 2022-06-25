@@ -21,7 +21,9 @@ def index(request):
     else:
         faturadohoje = str(faturadohoje).replace(".",",")
     clientesnovoshoje = Cliente.objects.all().count()
-    return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje})
+    cincoClientes = Cliente.objects.all().order_by('-id')[:5]
+    cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
+    return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
 
 ############ CARDAPIO ############
 ############ PIZZA    ############
