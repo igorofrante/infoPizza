@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Cozinha</title>
+    {% include 'head.html' %}
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="col-8 m-auto pt-4 pb-2 text-center">
+        <div class="col8 text-center mb-4">
+            <h5>
+                <strong>Número do Pedido: </strong>{{ pedido.id }} <br>
+            </h5>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm">
+                <!-- pizza -->
+                <h5>Pizzas </h5>
+                {% for pizza in pizzas %}
+                <strong>Nome: </strong>{{pizza.produto.nome}} | <strong>Tamanho: </strong>{{pizza.tamanho.tamanho}} | <strong>Preço: </strong>{{pizza.preco}}<br>  
+                {% endfor %}
+            </div>
+            <div class="col-sm">
+                 <!-- bebida -->
+                 <h5 >Bebidas </h5>
+                {% for bebida in bebidas %}
+                <strong>Nome: </strong>{{bebida.produto.nome}} | <strong>Tamanho: </strong>{{bebida.tamanho.tamanho}} | <strong>Preço: </strong>{{bebida.preco}}<br>  
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+
+        <div class="col-8 m-auto pt-4 pb-2 ">
+            <form name="formulario" id="formulario" action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group mt-2 ">
+                    <p>{{form.as_p}}</p>
+                </div>
+    
+                <input type="submit" class="btn btn-primary mt-3" value="Confirmar" name="submit">
+                <a href="/caixa" class="btn btn-danger mt-3">Cancelar</a>   
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

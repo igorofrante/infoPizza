@@ -43,6 +43,7 @@ class Pedido(models.Model):
     metodoPag = models.CharField(null=True,max_length=50)
     obs = models.CharField(max_length=500, null=True)
     cliente = models.ForeignKey(Cliente,null=True,on_delete=models.SET_NULL)
+    total = models.DecimalField(max_digits=5,decimal_places=2,null=True)
     class Meta:
         db_table = "pedido"
 

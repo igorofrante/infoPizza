@@ -16,9 +16,7 @@ function totalPedido(){
         }
     }
   }
-  $('#totalPedido').val(valor)
-
-
+  $('#id_form-total').val(valor)
 }
 
 function ajaxe() {
