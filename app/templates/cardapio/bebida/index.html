@@ -6,7 +6,6 @@
 <head>
     <title>Cardapio - Bebida</title>
     {% include 'head.html' %}
-    <script src="{% static 'javascript.js' %}"></script>
 </head>
 
 <body>
@@ -37,7 +36,7 @@
                     <td> 
                         <a href="/cardapio/bebida/view/{{ bebida.id }}" class="bi bi-card-text"></a>
                         <a href="{% url 'cardapioBebidaUpdate' bebida.id %}" class="bi bi-pencil"></a>
-                        <a href="/cardapio/bebida/delete/{{ bebida.id }}" class="bi bi-trash3"></a>
+                        <a href="/cardapio/bebida/delete/{{ bebida.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>
                     </td>
                 </tr>
                 {% endfor %}

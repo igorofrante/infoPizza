@@ -5,9 +5,7 @@
     
 <head>
     <title>Cardapio - Pizza</title>
-    {% include 'head.html' %}
-    <script src="{% static 'javascript.js' %}"></script>
-   
+    {% include 'head.html' %}  
 </head>
 
 <body>
@@ -45,7 +43,7 @@
                 <td>  
                     <a href="/cardapio/pizza/view/{{ pizza.id }}" class="bi bi-card-text"></a>
                     <a href="{% url 'cardapioPizzaUpdate' pizza.id %}" class="bi bi-pencil"></a>  
-                    <a href="/cardapio/pizza/delete/{{ pizza.id }}" class="bi bi-trash3"></a>  
+                    <a href="/cardapio/pizza/delete/{{ pizza.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
                 </td>  
             </tr>  
             {% endfor %}  

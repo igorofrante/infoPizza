@@ -6,7 +6,6 @@
 <head>
     <title>Mesa</title>
     {% include 'head.html' %}
-    <script src="{% static 'javascript.js' %}"></script>
 </head>
 
 <body>
@@ -49,8 +48,8 @@
                 <td data-field="ped">-</td>
                 {%endif%}
                 <td> 
-                    <a href="/mesa/clean/{{ mesa.id }}" class="bi bi-check-circle"></a>  
-                    <a href="/mesa/delete/{{ mesa.id }}" class="bi bi-trash3"></a>  
+                    <a href="/mesa/clean/{{ mesa.id }}" class="bi bi-check-circle" onclick="confirmar(event,3);"></a>  
+                    <a href="/mesa/delete/{{ mesa.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
                 </td>  
             </tr>  
             {% endfor %}  
@@ -58,5 +57,4 @@
         </table>  
     </div>
 </body>
-
 </html>

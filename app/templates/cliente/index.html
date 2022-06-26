@@ -7,7 +7,6 @@
 <head>
     <title>Clientes</title>
     {% include 'head.html' %}
-    <script src="{% static 'javascript.js' %}"></script>
 </head>
 
 <body>
@@ -40,7 +39,7 @@
                     <td>  
                         <a href="/cliente/view/{{ cliente.id }}" class="bi bi-person-rolodex"></a>
                         <a href="/cliente/form/{{ cliente.id }}" class="bi bi-pencil"></a>  
-                        <a href="/cliente/delete/{{ cliente.id }}" class="bi bi-trash3"></a>  
+                        <a href="/cliente/delete/{{ cliente.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
                     </td>  
                 </tr>  
                 {% endfor %}  
