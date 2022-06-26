@@ -1,4 +1,5 @@
 from dataclasses import fields
+from datetime import datetime,timedelta,time
 from re import M
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -13,22 +14,47 @@ import logging
 
 # Create your views here.
 
+# def index(request):
+#     ##############################################################################
+#     if datetime.now().time() < time(23,59): 
+#         startdate =  datetime.now()
+#         startdate = startdate.replace(hour=18,minute=0,second=0)
+#         enddate = startdate + timedelta(days=1)
+#         enddate = enddate.replace(hour=5,minute=0,second=0)
+#     else:
+#         startdate =  datetime.now() - timedelta(days=1)
+#         startdate = startdate.replace(hour=18,minute=0,second=0)
+#         enddate = datetime.now()
+#         enddate= enddate.replace(hour=5,minute=0,second=0) 
+#     ############################################################################
+#     pedidoshoje = Pedido.objects.filter(tempo__range=(startdate,enddate)).count()
+#     faturadohoje= Pedido.objects.filter(tempo__range=(startdate,enddate)).filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
+#     if faturadohoje == None:
+#         faturadohoje="00,00"
+#     else:
+#         faturadohoje = str(faturadohoje).replace(".",",")
+#     clientesnovoshoje = Cliente.objects.filter(cadastro__range=(startdate,enddate)).count()
+#     cincoClientes = Cliente.objects.all().order_by('-id')[:5]
+#     cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
+#     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
+
 def index(request):
-    pedidoshoje = Pedido.objects.all().count() #filter =today
+    pedidoshoje = Pedido.objects.all().count()
     faturadohoje= Pedido.objects.filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
     if faturadohoje == None:
         faturadohoje="00,00"
     else:
         faturadohoje = str(faturadohoje).replace(".",",")
-    clientesnovoshoje = Cliente.objects.all().count()
+    clientesnovoshoje = Cliente.objects.count()
     cincoClientes = Cliente.objects.all().order_by('-id')[:5]
     cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
 
+
 ############ CARDAPIO ############
 ############ PIZZA    ############
 def cardapioPizzaIndex(request):
-    pizzas = Produto.objects.filter(cat__iexact=1) 
+    pizzas = Produto.objects.filter(cat__iexact=1).order_by('nome') 
     return render(request,'cardapio/pizza/index.html',{'pizzas':pizzas}) 
 
 def cardapioPizzaView(request, id):
@@ -74,7 +100,7 @@ def cardapioPizzaDestroy(request, id):
 ############ CARDAPIO ############
 ############ BEBIDA   ############
 def cardapioBebidaIndex(request) :
-    bebidas = Produto.objects.filter(cat__iexact=2)
+    bebidas = Produto.objects.filter(cat__iexact=2).order_by('nome')
     return render(request,"cardapio/bebida/index.html", {'bebidas':bebidas}) 
 
 def cardapioBebidaView(request, id):
@@ -117,7 +143,7 @@ def cardapioBebidaDestroy(request, id):
 
 ########### CLIENTE ############
 def clienteIndex(request):
-    clientes = Cliente.objects.all()
+    clientes = Cliente.objects.all().order_by('nome')
     return render(request, 'cliente/index.html', {'clientes':clientes})
 
 def clienteView(request,id):
@@ -162,19 +188,7 @@ def pedidosMesaIndex(request) :
     pedidos = Pedido.objects.filter(cat=2).order_by('-tempo')
     return render(request,"pedido/index.html",{'pedidos':pedidos,'titulo':'Pedidos - Mesa'})     
 
-def indexContPedidos(request):
-    # if datetime.now().time()> time(23,59):
-    #     startdate =  datetime.now()
-    #     startdate = startdate.replace(hour=18,minute=0,second=0)
-    #     enddate = startdate + timedelta(days=1)
-    #     enddate = enddate.replace(hour=5,minute=0,second=0)
-    # else:
-    #     startday =  datetime.now() - timedelta(days=1)
-    #     startday = startday.replace(hour=18,minute=0,second=0)
-    #     enddate = datetime.now()
-    #     endday= enddate.replace(hour=5,minute=0,second=0) 
-    pedidoshoje = Pedido.objects.all().count() #filter =today
-    return render(request, 'index.html', {'pedidoshoje':pedidoshoje})
+
 
 def pedidosDeliveryInsert(request) :
     novoPedido = Pedido(cat=1)

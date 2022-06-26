@@ -155,9 +155,7 @@ class clienteForm(forms.ModelForm):
     cpf = BRCPFField(label='CPF')
     dtnasc = forms.DateField(
         widget=forms.SelectDateWidget(years=range(1922, 2022)), 
-        label='Data de Nascimento',
-        
-        )
+        label='Data de Nascimento')
     telefone = PhoneNumberField(
         widget=PhoneNumberPrefixWidget(initial='BR')
         )

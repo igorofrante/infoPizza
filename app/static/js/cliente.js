@@ -1,6 +1,7 @@
 $(document).ready(function (){
     $('#id_cpf').mask('000.000.000-00')
     $('#id_cep').mask('00000-000')
+    $('#id_telefone_1').attr('placeholder','Telefone com DDD')
 
     $('#id_cep').change(function () {
         //Nova variável "cep" somente com dígitos.

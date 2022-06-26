@@ -59,12 +59,14 @@
                     <thead>
                         <tr>
                             <th>Nome Completo</th>
+                            <th>Cadastrado em</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for cliente in cincoClientes%}
                         <tr>
-                            <td>{{cliente.nome}} {{cliente.sobrenome}}</td> 
+                            <td>{{cliente.nome}} {{cliente.sobrenome}}</td>
+                            <td>{{cliente.cadastro}}</td>  
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -86,7 +88,7 @@
                         <tr>
                             <th>Pedido</th>
                             <th>Categoria</th>
-                            <th>Data</th>
+                            <th>Anotado em</th>
                             <th>Status</th>
                         </tr>
                     </thead>
