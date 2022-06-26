@@ -43,7 +43,7 @@
                 <td>  
                     <a href="/cardapio/pizza/view/{{ pizza.id }}" class="bi bi-card-text"></a>
                     <a href="{% url 'cardapioPizzaUpdate' pizza.id %}" class="bi bi-pencil"></a>  
-                    <a href="/cardapio/pizza/delete/{{ pizza.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
+                    <a class="bi bi-trash3" onclick="confirmar('/cardapio/pizza/delete/{{ pizza.id }}');"></a>  
                 </td>  
             </tr>  
             {% endfor %}  

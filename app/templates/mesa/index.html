@@ -48,8 +48,8 @@
                 <td data-field="ped">-</td>
                 {%endif%}
                 <td> 
-                    <a href="/mesa/clean/{{ mesa.id }}" class="bi bi-check-circle" onclick="confirmar(event,3);"></a>  
-                    <a href="/mesa/delete/{{ mesa.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
+                    <a class="bi bi-check-circle" onclick="confirmar('/mesa/clean/{{ mesa.id }}');"></a>  
+                    <a class="bi bi-trash3" onclick="confirmar('/mesa/delete/{{ mesa.id }}');"></a>  
                 </td>  
             </tr>  
             {% endfor %}  

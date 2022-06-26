@@ -61,8 +61,8 @@
                         <a href="/pedido/waiter/{{pedido.id }}"><img src="/app/static/img/waiter.png"></img></a>
                         {%endif%}
                         <a href="/pedido/form/{{pedido.id }}" class="bi bi-pencil"></a>
-                        <a href="/pedido/cancel/{{ pedido.id }}" class="bi bi-x-circle" onclick="confirmar(event,2);"></a>
-                        <a href="/pedido/delete/{{ pedido.id }}" class="bi bi-trash3" onclick="confirmar(event,1);"></a>  
+                        <a class="bi bi-x-circle" onclick="confirmar('/pedido/cancel/{{ pedido.id }}');"></a>
+                        <a class="bi bi-trash3" onclick="confirmar('/pedido/delete/{{ pedido.id }}');"></a>  
                     </td>
                 </tr>
                 {% endfor %}
