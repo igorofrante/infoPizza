@@ -14,41 +14,41 @@ import logging
 
 # Create your views here.
 
-# def index(request):
-#     ##############################################################################
-#     if datetime.now().time() < time(23,59): 
-#         startdate =  datetime.now()
-#         startdate = startdate.replace(hour=18,minute=0,second=0)
-#         enddate = startdate + timedelta(days=1)
-#         enddate = enddate.replace(hour=5,minute=0,second=0)
-#     else:
-#         startdate =  datetime.now() - timedelta(days=1)
-#         startdate = startdate.replace(hour=18,minute=0,second=0)
-#         enddate = datetime.now()
-#         enddate= enddate.replace(hour=5,minute=0,second=0) 
-#     ############################################################################
-#     pedidoshoje = Pedido.objects.filter(tempo__range=(startdate,enddate)).count()
-#     faturadohoje= Pedido.objects.filter(tempo__range=(startdate,enddate)).filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
-#     if faturadohoje == None:
-#         faturadohoje="00,00"
-#     else:
-#         faturadohoje = str(faturadohoje).replace(".",",")
-#     clientesnovoshoje = Cliente.objects.filter(cadastro__range=(startdate,enddate)).count()
-#     cincoClientes = Cliente.objects.all().order_by('-id')[:5]
-#     cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
-#     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
-
 def index(request):
-    pedidoshoje = Pedido.objects.all().count()
-    faturadohoje= Pedido.objects.filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
+    ##############################################################################
+    if datetime.now().time() >= time(0,0) and datetime.now().time() <= time(5,00):
+        startdate =  datetime.now() - timedelta(days=1)
+        startdate = startdate.replace(hour=18,minute=0,second=0)
+        enddate = datetime.now()
+        enddate= enddate.replace(hour=5,minute=0,second=0)
+    elif datetime.now().time() <= time(23,59): 
+        startdate =  datetime.now()
+        startdate = startdate.replace(hour=18,minute=0,second=0)
+        enddate = startdate + timedelta(days=1)
+        enddate = enddate.replace(hour=5,minute=0,second=0) 
+    ############################################################################
+    pedidoshoje = Pedido.objects.filter(tempo__range=(startdate,enddate)).count()
+    faturadohoje= Pedido.objects.filter(tempo__range=(startdate,enddate)).filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
     if faturadohoje == None:
         faturadohoje="00,00"
     else:
         faturadohoje = str(faturadohoje).replace(".",",")
-    clientesnovoshoje = Cliente.objects.count()
+    clientesnovoshoje = Cliente.objects.filter(cadastro__range=(startdate,enddate)).count()
     cincoClientes = Cliente.objects.all().order_by('-id')[:5]
     cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
+
+# def index(request):
+#     pedidoshoje = Pedido.objects.all().count()
+#     faturadohoje= Pedido.objects.filter(status="Finalizado").aggregate(Sum('total'))['total__sum']
+#     if faturadohoje == None:
+#         faturadohoje="00,00"
+#     else:
+#         faturadohoje = str(faturadohoje).replace(".",",")
+#     clientesnovoshoje = Cliente.objects.count()
+#     cincoClientes = Cliente.objects.all().order_by('-id')[:5]
+#     cincoPedidos = Pedido.objects.all().order_by('-id')[:5]
+#     return render(request, 'index.html', {'pedidoshoje':pedidoshoje,'faturadohoje':faturadohoje,'clientesnovoshoje':clientesnovoshoje, 'cincoClientes':cincoClientes, 'cincoPedidos':cincoPedidos})
 
 
 ############ CARDAPIO ############
